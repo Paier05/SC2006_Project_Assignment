@@ -13,6 +13,12 @@ body {
     background-color: #f4f4f9;
 }
 
+.welcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-container {
     display: flex;
     justify-content: center;
