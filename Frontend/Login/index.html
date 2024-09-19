@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- <h1 class="welcome"><b>Welcome to Hawker Stalk</b></h1>-->
     <div class="login-container">
+        <h1 class="heading">Welcome to Hawker Stalk</h1>
         <form class="login-form">
-            <input type="text" placeholder="Domain" class="input-field">
+            <select class="input-field" name="domain">
+                <option>Choose Domain</option>
+                <option value="user">User</option>
+                <option value="hawker">Hawker</option>
+            </select>
             <input type="email" placeholder="Email" class="input-field">
             <input type="password" placeholder="Password" class="input-field">
             <button type="submit" class="login-btn">Login</button>
             <div class="additional-links">
+<<<<<<< Updated upstream:Frontend/Login/index.html
                 <a href="./Register/register.html">Sign Up</a>
+=======
+                <a href="UserSignUpPage.html">Sign Up</a>
+>>>>>>> Stashed changes:Frontend/LoginPage.html
                 <a href="#">Forgot Password</a>
             </div>
         </form>
