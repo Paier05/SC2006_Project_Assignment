@@ -1,65 +1,67 @@
+
 <?php
-// Improved error handling for database connection
-try {
-    $conn = new PDO("sqlsrv:server = tcp:hawker.database.windows.net,1433; Database = Hawker_App", "team26", "Wearegood!");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    // Detailed error output
-    echo "Connection failed: " . $e->getMessage();
-    die(); // Stop execution if there's a connection error
+$serverName = "hawker.database.windows.net";
+$connectionOptions = array(
+    "Database" => "Hawker_App",
+    "UID" => "team26",
+    "PWD" => "Wearegood!",
+    "LoginTimeout" => 30,
+    "Encrypt" => 1,
+    "TrustServerCertificate" => 0
+);
+
+// Establishes the connection
+$conn = sqlsrv_connect($serverName, $connectionOptions);
+
+
+// Check if the connection is successful
+if ($conn === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 // Get form data
-$domain = $_POST['domain'];
+$domain = $_POST['domain']; 
 $email = $_POST['email'];
-$passwordHashed = password_hash($_POST['password'], PASSWORD_BCRYPT); // Secure password hashing
+$password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Secure password hashing
 
-// Check the domain type (user or hawker)
+// SQL and parameters array
+$sql = "";
+$params = array();
+
 if ($domain == "user") {
-    // Prepare SQL query to insert into 'users' table for a regular user
-    $sql = "INSERT INTO users (domain, email, password) VALUES (:domain, :email, :password)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':domain', $domain);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password', $passwordHashed);
+    // Insert into database for user
+    $sql = "INSERT INTO users (domain, email, password) VALUES ('$domain', '$email', '$password')";
+    $params = array($domain, $email, $password);
 } else {
-    // Handle file upload for hawker
+    // Check if file is uploaded and move it to the uploads directory
     if (isset($_FILES['license']) && $_FILES['license']['error'] == 0) {
         $licenseFile = $_FILES['license'];
         $licensePath = 'uploads/' . basename($licenseFile['name']);
         
-        // Ensure the uploads directory is writable and move the uploaded file
+        // Move the uploaded file to the uploads directory
         if (move_uploaded_file($licenseFile['tmp_name'], $licensePath)) {
-            // Prepare SQL query to insert into 'users' table for hawker
-            $sql = "INSERT INTO dbo.users (domain, email, password, license) VALUES (:domain, :email, :password, :license)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':domain', $domain);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $passwordHashed);
-            $stmt->bindParam(':license', $licensePath);
+            // Insert into database for hawker
+            $sql = "INSERT INTO users (domain, email, password, license) VALUES ('$domain', '$email', '$password', '$licensePath')";
+            $params = array($domain, $email, $password, $licensePath);
         } else {
-            // Handle file upload error
             echo "Error uploading file.";
             exit();
         }
     } else {
-        // Handle missing file or upload error
         echo "No file uploaded or upload error.";
         exit();
     }
 }
 
-// Execute the SQL query and check if successful
-if ($stmt->execute()) {
-    // Redirect to a specific page or display a success message
-    header("Location: ../index.html");
-    exit(); // Make sure script execution stops after redirection
+// Execute the query using sqlsrv
+$stmt = sqlsrv_query($conn, $sql, $params);
+
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
 } else {
-    // Improved error handling to show detailed SQL error
-    $errorInfo = $stmt->errorInfo();
-    echo "Error executing query: SQLSTATE: " . $errorInfo[0] . ", Driver error code: " . $errorInfo[1] . ", Message: " . $errorInfo[2];
+    header("Location: ../index.html"); // Redirect to the login page   // Can also redirect to php file for user specific webpage
+    echo "Customer registration successful!";
 }
 
-// Close the connection
-$conn = null;
+sqlsrv_close($conn);
 ?>
