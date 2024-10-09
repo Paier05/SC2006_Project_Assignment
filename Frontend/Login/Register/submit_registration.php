@@ -1,5 +1,7 @@
 
 <?php
+include "../config.php";
+/*
 $serverName = "hawker.database.windows.net";
 $connectionOptions = array(
     "Database" => "Hawker_App",
@@ -18,7 +20,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions);
 if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
-
+*/
 // Get form data
 $domain = $_POST['domain']; 
 $email = $_POST['email'];
@@ -29,9 +31,10 @@ $sql = "";
 $params = array();
 
 if ($domain == "user") {
+    $status = 'active';
     // Insert into database for user
-    $sql = "INSERT INTO users (domain, email, password) VALUES ('$domain', '$email', '$password')";
-    $params = array($domain, $email, $password);
+    $sql = "INSERT INTO users (domain, email, password, status) VALUES ('$domain', '$email', '$password', '$status')";
+    $params = array($domain, $email, $password, $status);
 } else {
     // Check if file is uploaded and move it to the uploads directory
     if (isset($_FILES['license']) && $_FILES['license']['error'] == 0) {
@@ -40,9 +43,10 @@ if ($domain == "user") {
         
         // Move the uploaded file to the uploads directory
         if (move_uploaded_file($licenseFile['tmp_name'], $licensePath)) {
+            $status = 'pending';
             // Insert into database for hawker
-            $sql = "INSERT INTO users (domain, email, password, license) VALUES ('$domain', '$email', '$password', '$licensePath')";
-            $params = array($domain, $email, $password, $licensePath);
+            $sql = "INSERT INTO users (domain, email, password, license, status) VALUES ('$domain', '$email', '$password', '$licensePath', '$status')";
+            $params = array($domain, $email, $password, $licensePath, $status);
         } else {
             echo "Error uploading file.";
             exit();
