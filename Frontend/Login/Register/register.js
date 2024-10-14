@@ -9,6 +9,8 @@ function toggleUploadField() {
     }
 }
 
+
+
 document.getElementById('domain').addEventListener('change', toggleUploadField);
 
 document.getElementById('customerForm').addEventListener('submit', function(event) {
@@ -42,7 +44,7 @@ document.getElementById('customerForm').addEventListener('submit', function(even
         alert("Passwords do not match!");
         return;
     }
-
+    
     // You can send form data to the server here
     console.log({
         domain: 'Customer',
@@ -52,4 +54,6 @@ document.getElementById('customerForm').addEventListener('submit', function(even
 
     // Optionally, you can submit the form data to the server here
     this.submit();
+
+    
 });
