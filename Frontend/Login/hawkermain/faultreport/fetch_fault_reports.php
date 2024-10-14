@@ -3,7 +3,7 @@
 $serverName = "#";
 $connectionOptions = array(
     "Database" => "#",
-    "Uid" => "#", //userID
+    "Uid" => "#", //username
     "PWD" => "#" //password
 );
 
@@ -14,23 +14,18 @@ if ($conn === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-// Query to fetch fault reports (without user ID)
-$sql = "SELECT fault_report FROM fault_reports"; // Assuming table is named 'fault_reports' and the fault report is in the 'fault_report' column
+// Query to fetch fault reports
+$sql = "SELECT fault_report FROM fault_reports"; // Assuming the table is 'fault_reports' and the column is 'fault_report'
 $stmt = sqlsrv_query($conn, $sql);
 
 if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-// HTML to display the fault reports
-echo "<h2>Fault Reports</h2>";
-echo "<ul>";
-
+// Output the fault reports as HTML
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-    echo "<li>" . htmlspecialchars($row['fault_report']) . "</li>";
+    echo '<div class="report-item">' . htmlspecialchars($row['fault_report']) . '</div>';
 }
-
-echo "</ul>";
 
 // Free statement and close connection
 sqlsrv_free_stmt($stmt);
