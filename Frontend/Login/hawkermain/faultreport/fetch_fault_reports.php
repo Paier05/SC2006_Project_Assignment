@@ -1,19 +1,6 @@
 <?php
-// Database connection parameters
-$serverName = "#";
-$connectionOptions = array(
-    "Database" => "#",
-    "Uid" => "#", //username
-    "PWD" => "#" //password
-);
-
-// Establishes the connection to Azure SQL
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
+session_start();
+include 'config.php';
 // Query to fetch fault reports
 $sql = "SELECT fault_report FROM fault_reports"; // Assuming the table is 'fault_reports' and the column is 'fault_report'
 $stmt = sqlsrv_query($conn, $sql);
