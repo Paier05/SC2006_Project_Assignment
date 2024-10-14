@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($domain === 'admin') {
                     header("Location: ./admintest/usermanagement.php");
                 } elseif ($domain === "hawker") {
-                    header("#");
+                    header("Location: ./hawkermain/hawkermain.html");
                 } else {
                     header("Location: ./maptest/maptest.html");
                 }
