@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize Hawker Profile</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="time"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Initialize Your Hawker Profile</h1>
+    <div class="form-container">
+        <form action="process_hawker_initialize.php" method="POST">
+            <label for="stall_name">Stall Name:</label>
+            <input type="text" id="stall_name" name="stall_name" required>
+
+            <label for="opening_hours">Opening Hours:</label>
+            <input type="text" id="opening_hours" name="opening_hours" required placeholder="e.g. 9 AM - 9 PM">
+
+            <label for="menu_items">Menu Items:</label>
+            <textarea id="menu_items" name="menu_items" rows="4" required placeholder="List your menu items, separated by commas."></textarea>
+
+            <button type="submit">Initialize Profile</button>
+        </form>
+    </div>
+
+</body>
+</html>
