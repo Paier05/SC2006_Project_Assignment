@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (password_verify($password, $user['password'])) {
                 // Password matches, start session and redirect
                 $_SESSION['email'] = $email;
-                echo "Login successful!";
+                //echo "Login successful!";
 
                 // Redirect to a protected page (e.g., dashboard.php)
                 if ($domain === 'admin') {
