@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include "../config.php";
 /*
 $serverName = "hawker.database.windows.net";

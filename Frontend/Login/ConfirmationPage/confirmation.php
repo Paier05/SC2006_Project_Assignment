@@ -1,4 +1,8 @@
 <!-- confirmation.php -->
+<?php 
+session_start();
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +14,11 @@
 </head>
 <body>
     <?php
+        $sending_email = $_SESSION['email'];
+
         // Get the email from the POST request securely using htmlspecialchars
-        if (isset($_POST['email']) && !empty($_POST['email'])) {
-            $email = htmlspecialchars($_POST['email']);
-        } else {
+        if (!isset($sending_email) || empty($sending_email))    
+        {
             echo "<p>Error: Email not provided!</p>";
             exit;
         }
