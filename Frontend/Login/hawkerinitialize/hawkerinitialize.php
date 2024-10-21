@@ -1,16 +1,16 @@
 <?php
 // Start session
 session_start();
-include 'config.php'; // Include your database connection
+include '../config.php'; // Include your database connection
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve form inputs
     $stall_name = $_POST['stall_name'];
     $opening_time = $_POST['opening_time'];
     $closing_time = $_POST['closing_time'];
-    
+
     // Array for menu item details
-    $menu_items = $_POST['item_name']; 
+    $menu_items = $_POST['item_name'];
     $menu_descriptions = $_POST['item_description'];
     $menu_prices = $_POST['item_price'];
     $menu_images = $_FILES['item_image']; // Array for file uploads
@@ -29,8 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     sqlsrv_begin_transaction($conn);
 
     try {
-        // Insert into HawkerStalls
+        // Insert into HawkerStalls and get the inserted stall_id
         $query = "INSERT INTO HawkerStalls (stall_name, stall_owner, opening_time, closing_time, opening_status, fault_reports)
+                  OUTPUT INSERTED.id
                   VALUES (?, ?, ?, ?, ?, ?)";
         $params = array($stall_name, $user_id, $opening_time, $closing_time, $opening_status, $fault_reports);
         $stmt = sqlsrv_query($conn, $query, $params);
@@ -39,11 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception(print_r(sqlsrv_errors(), true));
         }
 
-        // Get the last inserted stall_id (if auto-incrementing)
-        $hawker_stall_id = sqlsrv_insert_id($conn); // Adjust this for your Azure SQL setup
+        // Fetch the last inserted stall_id
+        sqlsrv_fetch($stmt);
+        $hawker_stall_id = sqlsrv_get_field($stmt, 0); // Get the stall_id from the output
 
         // Directory for image uploads
-        $target_directory = "uploads/";
+        $target_directory = __DIR__ . "/uploads/";
+
+        // Check if the uploads directory exists, if not, create it
+        if (!is_dir($target_directory)) {
+            mkdir($target_directory, 0777, true); // Create the uploads directory
+        }
 
         // Loop through each menu item
         foreach ($menu_items as $index => $item_name) {
@@ -57,11 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Check if the image upload was successful
             if (move_uploaded_file($menu_images['tmp_name'][$index], $target_file)) {
                 // Successfully uploaded image, now insert into StallMenus
-                $menu_item_id = $index + 1;
-
-                $menu_query = "INSERT INTO StallMenus (HawkerID, MenuItemID, ItemName, ItemDescription, ItemImage, price)
-                               VALUES (?, ?, ?, ?, ?, ?)";
-                $menu_params = array($user_id, $menu_item_id, $item_name, $item_description, $item_image, $price);
+                $menu_query = "INSERT INTO StallMenus (HawkerID, ItemName, ItemDescription, ItemImage, price)
+                               VALUES (?, ?, ?, ?, ?)";
+                $menu_params = array($hawker_stall_id, $item_name, $item_description, $item_image, $price); // Use $hawker_stall_id
                 $menu_stmt = sqlsrv_query($conn, $menu_query, $menu_params);
 
                 if ($menu_stmt === false) {
@@ -76,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         sqlsrv_commit($conn);
 
         // Redirect to the hawker's main page after initialization
-        header("Location: ./hawkermain/hawkermain.html");
+        header("Location: ../hawkermain/hawkermain.html");
         exit;
 
     } catch (Exception $e) {
