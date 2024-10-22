@@ -11,7 +11,7 @@ if ($hawkerCenterId === 0) {
 }
 
 // Query to fetch stalls for the specified hawker center
-$sql = "SELECT stall_name FROM HawkerStalls WHERE hawker_center_id = ?";
+$sql = "SELECT id, stall_name, opening_hours FROM HawkerStalls WHERE hawker_center_id = ?";
 /*
 $sql = "
     SELECT
@@ -29,7 +29,7 @@ $stalls = [];
 
 if ($stmt !== false) {
     while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-        $stalls[] = $row['stall_name'];
+        $stalls[] = $row;
     }
 }
 
