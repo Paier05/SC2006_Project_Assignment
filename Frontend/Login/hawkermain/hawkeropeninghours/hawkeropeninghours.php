@@ -1,15 +1,31 @@
 <?php
+// Start session
+session_start();
+include '../config.php'; // Include your database connection
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Include your Azure SQL connection details
-    include 'config.php'; // Assume config.php includes the $conn variable for SQL Server
-
+    // Retrieve from input
     $days = $_POST['days'];
-    $startTime = $_POST['startTime'];
-    $endTime = $_POST['endTime'];
+    $opening_time = $_POST['opening_time'];
+    $closing_time = $_POST['closing_time'];
 
-    // Save the opening hours to the database
-    $query = "INSERT INTO opening_hours (days, start_time, end_time) VALUES (?, ?, ?)";
-    $params = array($days, $startTime, $endTime);
+    // Get the logged-in user's ID from session
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id']; // Assume user_id is stored in session
+    } else {
+        die("User not logged in.");
+    }
+
+    // Check current opening status of the stall
+    $current_time = date('h:iA'); // Format: "09:00AM" or "11:30PM"
+    $opening_status = ($current_time >= $opening_time && $current_time <= $closing_time) ? 1 : 0;
+
+    // Update the opening hours in the database
+    $query = "UPDATE HawkerStalls
+              SET opening_time = ?, closing_time = ?, opening_status = ?
+              WHERE user_id = ?";
+    
+    $params = array($opening_time, $closing_time, $opening_status, $user_id, $days);
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
@@ -19,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
 
-    echo 'Opening hours saved successfully.';
+    echo 'Opening hours updated successfully.';
 }
 ?>
+
