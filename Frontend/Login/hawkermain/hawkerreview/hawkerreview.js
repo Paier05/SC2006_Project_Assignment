@@ -4,14 +4,17 @@ document.getElementById('loadReviewsBtn').addEventListener('click', function() {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            document.getElementById('reviews').innerHTML = xhr.responseText;
+            // Update the reviews section with the received HTML content
+            document.getElementById('review').innerHTML = xhr.responseText;
         } else {
-            document.getElementById('reviews').innerHTML = 'Error loading reviews.';
+            // Handle error in case the request was successful but returned an error
+            document.getElementById('review').innerHTML = 'Error loading reviews.';
         }
     };
 
     xhr.onerror = function() {
-        document.getElementById('reviews').innerHTML = 'Request failed.';
+        // Handle request failure
+        document.getElementById('review').innerHTML = 'Request failed.';
     };
 
     xhr.send();
