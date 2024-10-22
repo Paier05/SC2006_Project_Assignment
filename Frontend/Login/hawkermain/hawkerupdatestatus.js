@@ -26,7 +26,7 @@ document.getElementById('openShopBtn').addEventListener('click', function() {
 
 document.getElementById('closeShopBtn').addEventListener('click', function() {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'updateStatus.php', true);
+    xhr.open('POST', 'hawkerupdatestatus.php', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function() {
