@@ -12,23 +12,26 @@
             <h1>Western Stall</h1>
             <a href="../hawkermain.html" class="close-btn">X</a>
         </div>
+        
+        <h2>Original Opening Hours</h2>
+        <div class="opening-data">
+            <span>Opening Hours: </span><span id="original_opening_hours"></span><br>
+            <span>Opening Days: </span><span id="original_opening_days"></span><br>
+        </div>
 
-        <h2>Opening Hours</h2>
-
+        <h2>Update Opening Hours</h2>
         <div class="days">
-            <span class="day-btn" data-day="Mon">Mon</span>
-            <span class="day-btn" data-day="Tue">Tue</span>
-            <span class="day-btn" data-day="Wed">Wed</span>
-            <span class="day-btn" data-day="Thu">Thu</span>
-            <span class="day-btn" data-day="Fri">Fri</span>
-            <span class="day-btn" data-day="Sat">Sat</span>
-            <span class="day-btn" data-day="Sun">Sun</span>
+            <span class="day-btn" data-day="0">Mon</span>
+            <span class="day-btn" data-day="1">Tue</span>
+            <span class="day-btn" data-day="2">Wed</span>
+            <span class="day-btn" data-day="3">Thu</span>
+            <span class="day-btn" data-day="4">Fri</span>
+            <span class="day-btn" data-day="5">Sat</span>
+            <span class="day-btn" data-day="6">Sun</span>
         </div>
 
         <div class="time-selector">
-            <input type="time" id="opening_time" value="09:00">
-            <span>to</span>
-            <input type="time" id="closing_time" value="21:00">
+            <input type="text" id="opening_hours" placeholder="e.g. 09:00am-09:00pm">
         </div>
 
         <button id="saveBtn" class="save-btn">Save</button>

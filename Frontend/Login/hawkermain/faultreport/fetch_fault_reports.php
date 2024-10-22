@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include '../config.php';
 
 // Check if user is logged in and user_id is set in the session
 if (isset($_SESSION['user_id'])) {
@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Query to fetch fault reports for the specific user_id
-$sql = "SELECT fault_reports FROM HawkerStalls WHERE user_id = ?";
+$sql = "SELECT fault_reports FROM HawkerStalls WHERE id = 4";  //error retrieving id from $user_id = $_SESSION['user_id']
 $params = array($user_id); // Use a parameterized query to prevent SQL injection
 
 $stmt = sqlsrv_query($conn, $sql, $params);
