@@ -20,18 +20,16 @@ function initMap() {
                     title: location.name
                 });
 
-                /*
                 marker.addListener('click', function() {
                     infowindow.open(map, marker);
                     fetchStalls(location.id, location.name);
-                });
-                
+                });                
 
                 var infowindow = new google.maps.InfoWindow({
                     content: `<h3>${location.name}</h3>`
                 });
-                */ 
 
+                /*
                 marker.addListener('click', function() {
                     // Show a loading message while fetching stalls
                     var infowindow = new google.maps.InfoWindow({
@@ -68,6 +66,7 @@ function initMap() {
                             `);
                         });                            
                 });
+                */
             });
         })
         .catch(error => console.error('Error:', error)); 
@@ -78,12 +77,22 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
     fetch(`fetch_stalls.php?id=${hawkerCenterId}`)
         .then(response => response.json())
         .then(stalls => {
+            // console.log(stalls);
+
             var stallList = `<h2>Stalls at ${hawkerCenterName}</h2>`;
+
+            if (stalls.length === 0) {
+                document.getElementById('stallList').innerHTML = `<p>No stalls found for ${hawkerCenterName}</p>`;
+                return;
+            }
+
             stalls.forEach(stall => {
+                // console.log(stall);
+
                 stallList += `
-                    <div class="stall" onclick="fetchMenu(${stall.StallID})">
+                    <div class="stall" onclick="fetchMenu(${stall.id})">
                         <h3>${stall.stall_name}</h3>
-                        <p>Hours: ${stall.opening_hours}</p>
+                        <p>Opening hours: ${stall.opening_hours}</p>
                     </div>
                 `;
             });
@@ -97,18 +106,19 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
         .catch(error => console.error('Error:', error));
 }
 
-/*
 // Fetch menu for a specific stall and display below the stall list
 function fetchMenu(stallId) {
     fetch(`fetch_menu.php?stall_id=${stallId}`)
         .then(response => response.json())
         .then(menuItems => {
+            console.log(menuItems);
+
             var menuContent = '<h2>Menu</h2>';
             menuItems.forEach(item => {
                 menuContent += `
                     <div class="menuItem">
                         <h3>${item.ItemName}</h3>
-                        <img src="${item.ItemImage}" alt="${item.ItemName}" style="width:100px;height:100px;">
+                        <img src="../hawkerinitialize/uploads/${item.ItemImage}" alt="${item.ItemName}" style="width:100px;height:100px;">
                         <p>${item.ItemDescription}</p>
                         <p>Price: $${item.Price}</p>
                     </div>
@@ -120,7 +130,6 @@ function fetchMenu(stallId) {
         })
         .catch(error => console.error('Error:', error));
 }
-*/
 
 // Load the map
 window.onload = initMap;
