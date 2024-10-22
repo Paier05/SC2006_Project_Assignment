@@ -4,14 +4,14 @@ document.getElementById('loadReportsBtn').addEventListener('click', function() {
 
     xhr.onload = function() {
         if (xhr.status === 200) {
-            document.getElementById('faultReports').innerHTML = xhr.responseText;
+            document.getElementById('fault_reports').innerHTML = xhr.responseText;
         } else {
-            document.getElementById('faultReports').innerHTML = 'Error loading fault reports';
+            document.getElementById('fault_reports').innerHTML = 'Error loading fault reports';
         }
     };
 
     xhr.onerror = function() {
-        document.getElementById('faultReports').innerHTML = 'Request failed';
+        document.getElementById('fault_reports').innerHTML = 'Request failed';
     };
 
     xhr.send();

@@ -16,16 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("User not logged in.");
     }
 
-    // Check current opening status of the stall
-    $current_time = date('h:iA'); // Format: "09:00AM" or "11:30PM"
-    $opening_status = ($current_time >= $opening_time && $current_time <= $closing_time) ? 1 : 0;
-
-    // Update the opening hours in the database
-    $query = "UPDATE HawkerStalls
-              SET opening_time = ?, closing_time = ?, opening_status = ?
-              WHERE user_id = ?";
+    // Update the menu item in the database
+    $query = "UPDATE StallMenus
+              SET ItemName = ?, ItemDescription = ?, ItemImage = ?, Price = ?
+              WHERE HawkerID = ?";
     
-    $params = array($opening_time, $closing_time, $opening_status, $user_id, $days);
+    $params = array($ItemName, $ItemDescription, $ItemImage, $Price);
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
@@ -35,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
 
-    echo 'Opening hours updated successfully.';
 }
 ?>
 

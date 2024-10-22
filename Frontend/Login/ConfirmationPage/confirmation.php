@@ -1,6 +1,7 @@
+<!-- confirmation.php -->
 <?php 
 session_start();
-?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,7 @@ session_start();
 
         // Check if email exists and is not empty
         if (!isset($sending_email) || empty($sending_email)) {
+
             echo "<p>Error: Email not provided!</p>";
             exit;
         }

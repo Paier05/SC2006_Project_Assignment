@@ -9,7 +9,29 @@ function toggleUploadField() {
     }
 }
 
+function sendMail(callback){
+    (function(){
+        emailjs.init("ecpfQCyWBlizVS5MW"); // the emailjs key
+    })();
 
+    // Get the email from the PHP-generated content
+    var params = {
+        to: document.querySelector("#to").textContent
+    };
+
+    var serviceId = "service_df5rsb4"; // Email service ID
+    var templateId = "template_ley1kxr"; // Email template ID
+
+    // Send the email using EmailJS
+    emailjs.send(serviceId, templateId, params)
+    .then(function(response) {
+        alert("Confirmation email sent successfully!");
+        window.location.href = 'Location: ../index.html'; // Redirect back to the login page
+    })
+    .catch(function(error) {
+        console.error("Failed to send email:", error);
+    });
+}
 
 document.getElementById('domain').addEventListener('change', toggleUploadField);
 

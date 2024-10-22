@@ -52,6 +52,11 @@ h2 {
     font-size: 1rem;
 }
 
+.day-btn.selected {
+    background-color: green;
+    color: #FFC107; 
+}
+
 .time-selector {
     display: flex;
     justify-content: center;
