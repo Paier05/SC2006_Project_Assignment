@@ -101,7 +101,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
             document.getElementById('stallList').innerHTML = stallList;
 
             // Clear previous menu (if any)
-            // document.getElementById('menuItems').innerHTML = '';
+            document.getElementById('menuItems').innerHTML = '';
         })
         .catch(error => console.error('Error:', error));
 }
