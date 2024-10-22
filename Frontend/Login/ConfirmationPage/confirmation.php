@@ -1,4 +1,7 @@
-<!-- confirmation.php -->
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,42 +13,51 @@
 </head>
 <body>
     <?php
-        // Get the email from the POST request securely using htmlspecialchars
-        if (isset($_POST['email']) && !empty($_POST['email'])) {
-            $email = htmlspecialchars($_POST['email']);
-        } else {
+        // Retrieve email from session securely
+        $sending_email = $_SESSION['mail'];
+
+        // Check if email exists and is not empty
+        if (!isset($sending_email) || empty($sending_email)) {
             echo "<p>Error: Email not provided!</p>";
             exit;
         }
+
+        // Output the email in a JavaScript variable for use in the script
+        echo "<script>var email = '".htmlspecialchars($sending_email)."';</script>";
     ?>
     
     <div class="message-container">
         <h1 class="message">Thank you for signing up!</h1>
-        <!-- Hidden paragraph to hold the email address for use in JavaScript -->
-        <p id="to" style="display:none;"><?php echo $email; ?></p>
-        <button class="back-button" onclick="sendMail()">Send Confirmation Email</button>
+        <button class="back-button" id="sendEmailButton">Send Confirmation Email</button>
     </div>
 
+    <!-- Move script to the bottom to ensure the DOM is fully loaded before it runs -->
     <script>
-        function sendMail(){
-            // Initialize EmailJS
-            (function(){
-                emailjs.init("ecpfQCyWBlizVS5MW"); // Your EmailJS public key
-            })();
+        // Wait until the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            // Attach the event listener to the button after DOM is loaded
+            document.getElementById("sendEmailButton").addEventListener("click", sendMail);
+        });
 
-            // Get the email from the PHP-generated content
+        function sendMail() {
+            // Initialize EmailJS
+            emailjs.init("ecpfQCyWBlizVS5MW"); // Your EmailJS public key
+
+            // Set parameters with the email variable from PHP
             var params = {
-                to: document.querySelector("#to").textContent
+                to: email,  // Using the global 'email' variable set by PHP
             };
+
+            //alert(email);
 
             var serviceId = "service_df5rsb4"; // Email service ID
             var templateId = "template_ley1kxr"; // Email template ID
 
-            // Send the email using EmailJS
+            // Send email using EmailJS
             emailjs.send(serviceId, templateId, params)
             .then(function(response) {
                 alert("Confirmation email sent successfully!");
-                window.location.href = 'Location: ../index.html'; // Redirect back to the login page
+                window.location.href = '../index.html'; // Redirect after success
             })
             .catch(function(error) {
                 console.error("Failed to send email:", error);

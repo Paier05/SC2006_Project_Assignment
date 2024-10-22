@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 include "../config.php";
 /*
 $serverName = "hawker.database.windows.net";
@@ -25,6 +26,8 @@ if ($conn === false) {
 $domain = $_POST['domain']; 
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Secure password hashing
+
+$_SESSION['mail'] = $_POST['email'];
 
 // SQL and parameters array
 $sql = "";
