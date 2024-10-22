@@ -10,16 +10,7 @@ if ($stallId === 0) {
 }
 
 // Query to fetch the menu items for the specified stall
-$sql = "
-    SELECT
-        SM.MenuItemID,
-        SM.ItemName,
-        SM.ItemDescription,
-        SM.ItemImage,
-        SM.Price
-    FROM StallMenu SM
-    WHERE SM.StallID = ?
-";
+$sql = "SELECT MenuItemID, ItemName, ItemDescription, ItemImage, Price FROM StallMenus WHERE StallID = ?";
 $params = array($stallId);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
