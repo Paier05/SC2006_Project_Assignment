@@ -4,7 +4,7 @@ include '../config.php';
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
+    $id = $_SESSION['user_id'];
 } else {
     die("User not logged in.");
 }
@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
 // Fetch the existing opening hours
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $query = "SELECT opening_hours, opening_days FROM HawkerStalls WHERE id = 4";  //error retrieving id from $user_id = $_SESSION['user_id']
-    $params = array($user_id);
+    $params = array($id);
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update the opening hours and days
     $query = "UPDATE HawkerStalls SET opening_hours = ?, opening_days = ? WHERE id = 4"; //error retrieving id from $user_id = $_SESSION['user_id']
-    $params = array($opening_hours, $opening_days, $user_id);
+    $params = array($opening_hours, $opening_days, $id);
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
