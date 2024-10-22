@@ -3,10 +3,8 @@ document.querySelectorAll('.day-btn').forEach(button => {
         // Check if the button is already selected
         if (this.classList.contains('selected')) {
             this.classList.remove('selected');
-            alert('deselected');
         } else {
             this.classList.add('selected');
-            alert('selected');
         }
     });
 });
