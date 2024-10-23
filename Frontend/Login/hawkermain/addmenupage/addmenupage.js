@@ -61,8 +61,9 @@ addItem.addEventListener('click', () => {
     nameField.value = '';
     descriptionField.value = '';
     priceField.value = '';
-    foodImage.src = '';
-    uploadIconWrapper.style.display = 'flex';  
+    foodImage.src = '';  // Clear the image source
+    foodImage.alt = '';  // Clear the alt text to avoid "Spaghetti" being shown
+    uploadIconWrapper.style.display = 'flex';  // Show the upload icon
     nameField.disabled = false;
     descriptionField.disabled = false;
     priceField.disabled = false;
@@ -72,6 +73,7 @@ addItem.addEventListener('click', () => {
     // Remove 'selected' class from all items
     menuItems.forEach(item => item.classList.remove('selected'));
 });
+
 
 uploadIconWrapper.addEventListener('click', () => {
     imageUploadInput.click();  
@@ -86,6 +88,9 @@ imageUploadInput.addEventListener('change', (event) => {
         reader.onload = function(e) {
             foodImage.src = e.target.result;
             foodImage.alt = "Uploaded Image";
+
+            // Hide the upload icon once an image is uploaded
+            uploadIconWrapper.style.display = 'none';
         };
 
         reader.readAsDataURL(file);  
