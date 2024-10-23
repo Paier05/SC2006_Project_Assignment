@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         header("Location: ./hawkermain/hawkermain.html");
                     } else {
                         // If not found, redirect to the initialization page
-                        header("Location: ./hawkerinitialize/hawkerinitialize.html");
+                        header("Location: ./hawkerinitialize/hawkerinitialize.php");
                     }
 
                     sqlsrv_free_stmt($checkStmt);
