@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.input-field {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select.input-field {
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.login-btn {
+    background-color: #ffcd43;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #f2b93a;
+}
+
+.additional-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.additional-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #333;
+}
+
+.additional-links a:hover {
+    text-decoration: underline;
+}
+
+/* Style the file input wrapper for better alignment */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.file-input {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Hide default file input appearance */
+.file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.file-input::before {
+    content: 'Choose File';
+    display: inline-block;
+    background: #ffcc5c;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Change appearance when hovering */
+.file-input:hover::before {
+    background-color: #ffb74d;
+}
+
+.file-input::after {
+    content: 'No file selected';
+    color: #888;
+    margin-left: 10px;
+}
+
+/* Display chosen file name */
+.file-input:active::before {
+    background-color: #ffb74d;
+}
+.file-input:active::after {
+    content: attr(value);
+}

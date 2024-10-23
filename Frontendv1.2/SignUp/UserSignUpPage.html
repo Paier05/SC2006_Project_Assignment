@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form">
+            <h1 class="heading">Sign Up</h1>
+            
+            <!-- Dropdown for Domain selection -->
+            <select id="domain" class="input-field" name="domain" onchange="toggleUploadField()">
+                <option>Choose Domain</option>
+                <option value="user">User</option>
+                <option value="hawker">Hawker</option>
+            </select>
+            
+            <input type="email" placeholder="Email" class="input-field">
+            <input type="password" placeholder="Password" class="input-field">
+            <input type="password" placeholder="Re-enter Password" class="input-field">
+            
+            <!-- Upload License Field, hidden by default -->
+            <div id="upload-field" style="display: none;">
+                <label for="license">Upload License</label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="license" class="input-field file-input">
+                </div>
+            </div>
+            
+            <button type="submit" class="login-btn">Submit</button>
+        </form>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="signup.js"></script>
+</body>
+</html>

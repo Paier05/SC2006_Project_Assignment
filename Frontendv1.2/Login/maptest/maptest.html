@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawker Center Map</title>
+    <style>
+        /* CSS for Map Container */
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+    <!-- Load the Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzh4khfKnyc3v9JIN4LhAR0ZxCw8Xsa_s"></script>
+</head>
+<body>
+
+    <h1>Hawker Centers in the City</h1>
+    <div id="map"></div>
+
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // Center the map at a default location (e.g., Singapore)
+            var mapCenter = { lat: 1.3521, lng: 103.8198 };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: mapCenter
+            });
+
+
+            // Fetch locations from the PHP script
+            fetch('get_hawker_addresses.php')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(location => {
+                        // Place a marker for each location
+                        var marker = new google.maps.Marker({
+                            position: { lat: parseFloat(location.lat), lng: parseFloat(location.lng) },
+                            map: map,
+                            title: location.name
+                        });
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: `<h3>${location.name}</h3>`
+                        });
+
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Load the map
+        window.onload = initMap;
+    </script>
+
+</body>
+</html>

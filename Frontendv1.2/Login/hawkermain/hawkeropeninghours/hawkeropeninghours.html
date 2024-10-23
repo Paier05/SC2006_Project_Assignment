@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening Hours</title>
+    <link rel="stylesheet" href="hawkeropeninghours.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Western Stall</h1>
+            <a href="#" class="close-btn">X</a>
+        </div>
+
+        <h2>Opening Hours</h2>
+
+        <div class="days">
+            <span class="day-btn" data-day="Mon">Mon</span>
+            <span class="day-btn" data-day="Tue">Tue</span>
+            <span class="day-btn" data-day="Wed">Wed</span>
+            <span class="day-btn" data-day="Thu">Thu</span>
+            <span class="day-btn" data-day="Fri">Fri</span>
+            <span class="day-btn" data-day="Sat">Sat</span>
+            <span class="day-btn" data-day="Sun">Sun</span>
+        </div>
+
+        <div class="time-selector">
+            <input type="time" id="startTime" value="09:00">
+            <span>to</span>
+            <input type="time" id="endTime" value="21:00">
+        </div>
+
+        <button id="saveBtn" class="save-btn">Save</button>
+    </div>
+
+    <script src="hawkeropeninghours.js"></script>
+</body>
+</html>
