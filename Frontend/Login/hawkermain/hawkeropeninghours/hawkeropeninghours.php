@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 include '../config.php';
 
@@ -49,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die(print_r(sqlsrv_errors(), true));
     }
 
+    ob_end_clean();
     echo 'Opening hours updated successfully.';
 
     sqlsrv_free_stmt($stmt);
