@@ -14,12 +14,19 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 h1 {
     text-align: center;
     color: #333;
 }
 
-.close-button {
+.close-btn {
     background-color: #d6b768;
     border: none;
     padding: 10px;
@@ -28,7 +35,7 @@ h1 {
     cursor: pointer;
 }
 
-.close-button:hover {
+.close-btn:hover {
     background-color: #c59738;
 }
 

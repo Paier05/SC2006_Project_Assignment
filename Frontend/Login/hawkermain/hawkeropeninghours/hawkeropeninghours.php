@@ -4,17 +4,17 @@ include '../config.php';
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
-    $id = $_SESSION['user_id'];
+    $stall_owner = $_SESSION['user_id'];
 } else {
     die("User not logged in.");
 }
 
-echo "<script>var id = '".htmlspecialchars($id)."';</script>";
+echo "<script>var id = '".htmlspecialchars($stall_owner)."';</script>";
 
 // Fetch the existing opening hours
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $query = "SELECT opening_hours, opening_days FROM HawkerStalls WHERE id = ?";  //issue retrieving id from $user_id = $_SESSION['user_id']
-    $params = array($id);
+    $query = "SELECT opening_hours, opening_days FROM HawkerStalls WHERE stall_owner = ?";  
+    $params = array($stall_owner);
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $opening_hours = $_POST['opening_hours'];
 
     // Update the opening hours and days
-    $query = "UPDATE HawkerStalls SET opening_hours = ?, opening_days = ? WHERE id = ?"; //issue retrieving id from $user_id = $_SESSION['user_id']
-    $params = array($opening_hours, $opening_days, $id);
+    $query = "UPDATE HawkerStalls SET opening_hours = ?, opening_days = ? WHERE stall_owner = ?"; 
+    $params = array($opening_hours, $opening_days, $stall_owner);
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
@@ -54,4 +54,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     echo 'Opening hours updated successfully.';
 }
+
 ?>
