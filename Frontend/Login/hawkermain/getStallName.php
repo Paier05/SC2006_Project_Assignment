@@ -8,6 +8,7 @@ if (isset($_SESSION['user_id'])) {
 } else {
     die("User not logged in.");
 }
+header('Content-Type: application/json'); // Ensure JSON content type
 
 // Query to fetch the stall name for the logged-in user
 $query = "SELECT stall_name FROM HawkerStalls WHERE stall_owner = ?";

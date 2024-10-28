@@ -65,7 +65,6 @@ document.getElementById('saveBtn').addEventListener('click', function() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
         if (xhr.status === 200) {
-            alert(id);
             alert('Opening hours saved successfully.');
         } else {
             alert('Error saving opening hours.');
@@ -76,7 +75,7 @@ document.getElementById('saveBtn').addEventListener('click', function() {
     xhr.send(data);
 });
 
-//get stall_name to display
+// Get stall_name to display
 document.addEventListener('DOMContentLoaded', function() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', '../getStallName.php', true);

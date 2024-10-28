@@ -4,14 +4,14 @@ include '../config.php';
 
 // Check if user is logged in and user_id is set in the session
 if (isset($_SESSION['user_id'])) {
-    $id = $_SESSION['user_id']; // Retrieve the user_id from the session
+    $stall_owner = $_SESSION['user_id']; // Retrieve the user_id from the session
 } else {
     die("User not logged in.");
 }
 
 // Query to fetch fault reports for the specific user_id
-$sql = "SELECT fault_reports FROM HawkerStalls WHERE id = 4";  //error retrieving id from $user_id = $_SESSION['user_id']
-$params = array($id); // Use a parameterized query to prevent SQL injection
+$sql = "SELECT fault_reports FROM HawkerStalls WHERE stall_owner = ?";  
+$params = array($stall_owner); // Use a parameterized query to prevent SQL injection
 
 $stmt = sqlsrv_query($conn, $sql, $params);
 
