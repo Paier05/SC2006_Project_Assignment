@@ -107,7 +107,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
     fetch(`fetch_stalls.php?id=${hawkerCenterId}`)
         .then(response => response.json())
         .then(stalls => {
-            // console.log(stalls);
+            console.log(stalls);
 
             var stallList = `<h2>Stalls at ${hawkerCenterName}</h2>`;
 
@@ -119,7 +119,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
             }
 
             stalls.forEach(stall => {
-                // console.log(stall);
+                console.log(stall);
                 const openingDaysMessage = getOpeningDaysMessage(stall.opening_days);
                 stallList += `
                     <div class="stall" onclick="fetchMenu(${stall.id})">
@@ -127,6 +127,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                         <p>Opening hours: ${stall.opening_hours}</p>
                         <p>Open on: ${openingDaysMessage}
                         <p>Rating: ${'⭐'.repeat(stall.sum_rating/stall.total_number_of_rating)}</p>
+                        <button onclick="event.stopPropagation(); redirectToReviewPage(${stall.id})">Review</button>
                     </div>
                 `;
             });
@@ -145,7 +146,7 @@ function fetchMenu(stallId) {
     fetch(`fetch_menu.php?stall_id=${stallId}`)
         .then(response => response.json())
         .then(menuItems => {
-            console.log(menuItems);
+            // console.log(menuItems);
 
             var menuContent = '<h2>Menu</h2>';
             menuItems.forEach(item => {
@@ -163,6 +164,11 @@ function fetchMenu(stallId) {
             document.getElementById('menuItems').innerHTML = menuContent;
         })
         .catch(error => console.error('Error:', error));
+}
+
+// Redirect function
+function redirectToReviewPage(stallId) {
+    window.location.href = `./review/review.html?stall_id=${stallId}`;
 }
 
 // Load the map
