@@ -3,10 +3,12 @@
     height: 500px;
     width: 100%;
 }
+
 /* Add basic styling for the modal */
 #stallList {
     margin-top: 20px;
 }
+
 .stall {
     display: inline-block;
     margin: 10px;
@@ -15,11 +17,13 @@
     width: 300px;
     text-align: center;
 }
+
 .stall img {
     width: 100px;
     height: 100px;
     object-fit: cover;
 }
+
 #menuItems {
     margin-top: 20px;
 }

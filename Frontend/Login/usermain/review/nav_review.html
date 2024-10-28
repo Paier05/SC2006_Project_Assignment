@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawker Stalk - Stall Reviews</title>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Stall Review Section -->
+    <section id="reviews">
+        <div class="container">
+            <h1>Western Stall @ Bugis Hawker Centre</h1>
+            <!-- Star rating section -->
+            <div class="rating">
+                <span>★★★★☆</span> 
+                <p>4.8/5.0</p>
+            </div>
+
+            <!-- Display existing reviews in cards -->
+            <div class="reviews-list">
+                <div class="review-card">
+                    <p><strong>SteamedPanda</strong></p>
+                    <p>★★★★☆</p>
+                    <p>“Generous portions and delicious chicken chop with a tasty sauce...”</p>
+                </div>
+                <div class="review-card">
+                    <p><strong>CatLover1982</strong></p>
+                    <p>★★★☆☆</p>
+                    <p>“Decent but not amazing. Fish & chips were slightly overcooked.”</p>
+                </div>
+                <div class="review-card">
+                    <p><strong>Yej234</strong></p>
+                    <p>★★★★★</p>
+                    <p>“Surprisingly good steak with great mushroom sauce at a reasonable price.”</p>
+                </div>
+            </div>
+
+            <!-- Button to toggle the review form -->
+            <button id="leave-review-btn">Leave a Review</button>
+        </div>
+    </section>
+
+    <!-- Review Form (initially hidden, revealed by JS) -->
+    <section id="leave-review" style="display:none;">
+        <div class="container">
+            <h1>Submit Your Review for Western Stall @ Bugis Hawker Centre</h1>
+            <form id="review-form" method="POST" action="submit_review.php">
+                <!-- Star rating input -->
+                <label for="rating">Your Rating:</label>
+                <div class="rating-input">
+                    <input type="radio" name="rating" value="5" id="star5"><label for="star5">★★★★★</label>
+                    <input type="radio" name="rating" value="4" id="star4"><label for="star4">★★★★☆</label>
+                    <input type="radio" name="rating" value="3" id="star3"><label for="star3">★★★☆☆</label>
+                    <input type="radio" name="rating" value="2" id="star2"><label for="star2">★★☆☆☆</label>
+                    <input type="radio" name="rating" value="1" id="star1"><label for="star1">★☆☆☆☆</label>
+                </div>
+
+                <!-- Review text area -->
+                <textarea name="review" id="review" placeholder="Share your experience..." required></textarea>
+
+                <!-- Crowd level input -->
+                <label for="crowd">Crowd Level:</label>
+                <div class="crowd-level">
+                    <input type="radio" name="crowd" value="1">1
+                    <input type="radio" name="crowd" value="2">2
+                    <input type="radio" name="crowd" value="3">3
+                    <input type="radio" name="crowd" value="4">4
+                    <input type="radio" name="crowd" value="5">5
+                </div>
+
+                <!-- Time input -->
+                <label for="time">Approximate Time:</label>
+                <input type="time" name="time" id="time" required>
+
+                <!-- Submit button -->
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

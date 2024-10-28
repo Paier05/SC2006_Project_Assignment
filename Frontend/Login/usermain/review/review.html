@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Page</title>
+    <link rel="stylesheet" href="review.css">
+</head>
+<body>
+    <div id="reviewContainer">
+        <h1>Review for <span id="stallName"></span></h1>
+        <p id="openingHours"></p>
+
+        <!-- Display Existing Reviews -->
+        <h2>Existing Reviews</h2>
+        <div id="reviewList" class="review-list"></div>
+
+        <!-- Review Submission Form -->
+        <h2>Submit a Review</h2>
+        <form id="reviewForm">
+            <!-- Rating System -->
+            <label for="rating">Your Rating:</label>
+            <div id="rating">
+                <input type="radio" id="star5" name="rating" value="1"><label for="star1">⭐</label>
+                <input type="radio" id="star4" name="rating" value="2"><label for="star2">⭐⭐</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">⭐⭐⭐</label>
+                <input type="radio" id="star2" name="rating" value="4"><label for="star4">⭐⭐⭐⭐</label>
+                <input type="radio" id="star1" name="rating" value="5"><label for="star5">⭐⭐⭐⭐⭐</label>
+            </div>
+            
+            <textarea name="review_text" id="reviewText" placeholder="Write your review..." required></textarea><br>
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+
+    <button onclick="location.href='../usermain.html'">Main Menu</button>;
+
+    <script src="review.js"></script>
+</body>
+</html>

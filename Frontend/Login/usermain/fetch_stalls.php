@@ -12,16 +12,6 @@ if ($hawkerCenterId === 0) {
 
 // Query to fetch stalls for the specified hawker center
 $sql = "SELECT id, stall_name, opening_hours, opening_days, sum_rating, total_number_of_rating FROM HawkerStalls WHERE hawker_center_id = ?";
-/*
-$sql = "
-    SELECT
-        HS.id AS StallID,
-        HS.stall_name,
-        HS.opening_hours,
-    FROM HawkerStalls HS
-    WHERE HS.hawker_center_id = ?
-";
-*/
 $params = array($hawkerCenterId);
 $stmt = sqlsrv_query($conn, $sql, $params);
 
