@@ -31,21 +31,51 @@ if ($stmt === false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management Dashboard</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        h2{
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
-            border: 1px solid black;
+        td {
+            border: 3px solid darkgray;
             padding: 8px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            border: 3px solid darkgray;
+            border-bottom: 3px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #ffcd43;
         }
         button {
+            background-color: #ffcd43;
+            border: none;
+            border-radius: 10px;
+            color: black;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
             padding: 5px 10px;
             margin: 5px;
+        }
+        button:hover {
+            background-color: #f2b93a;
         }
     </style>
 </head>
