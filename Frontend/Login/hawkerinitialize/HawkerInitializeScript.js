@@ -34,7 +34,7 @@ function addMenuItem() {
     // HTML for the new menu item row
     newRow.innerHTML = `
         <input type="text" name="item_name[]" placeholder="Food Name" required>
-        <input type="text" name="item_price[]" class="price-input" placeholder="Price (SGD)" required>
+        <input type="number" name="item_price[]" class="price-input" placeholder="Price (SGD)" required>
         <input type="file" name="item_image[]" accept="image/*" required>
         <textarea name="item_description[]" placeholder="Description" rows="2"></textarea>
     `;
