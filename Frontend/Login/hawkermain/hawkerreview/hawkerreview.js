@@ -22,7 +22,7 @@ document.getElementById('loadReviewsBtn').addEventListener('click', function() {
 //get stall_name to display
 document.addEventListener('DOMContentLoaded', function() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '../hawkermain/getStallName.php', true);
+    xhr.open('GET', '../getStallName.php', true);
 
     xhr.onload = function() {
         if (xhr.status === 200) {
