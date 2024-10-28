@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 // Redirect to a protected page (e.g., dashboard.php)
                 if ($domain === 'admin') {
-                    header("Location: ./admintest/usermanagement.php");
+                    header("Location: ./adminmain/usermanagement.php");
                 } elseif ($domain === "hawker") {
                     // Store user_id in session
                     $_SESSION['user_id'] = $user['user_id']; 
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     sqlsrv_free_stmt($checkStmt);
                     
                 } else {
-                    header("Location: ./maptest/maptest.html");
+                    header("Location: ./usermain/usermain.html");
                 }
                 exit;
             } else {

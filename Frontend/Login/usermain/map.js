@@ -72,6 +72,36 @@ function initMap() {
         .catch(error => console.error('Error:', error)); 
 }
 
+function getOpeningDaysMessage(opening_days) {
+    // Convert the string to an array of 1s and 0s
+    const daysOpen = opening_days.split('').map(Number);
+    var openResult = "";
+
+    if (daysOpen[0]==1) {
+        openResult += "Mon ";
+    }
+    if (daysOpen[1]==1) {
+        openResult += "Tue ";
+    }
+    if (daysOpen[2]==1) {
+        openResult += "Wed ";
+    }
+    if (daysOpen[3]==1) {
+        openResult += "Thu ";
+    }
+    if (daysOpen[4]==1) {
+        openResult += "Fri ";
+    }
+    if (daysOpen[5]==1) {
+        openResult += "Sat ";
+    }
+    if (daysOpen[6]==1) {
+        openResult += "Sun ";
+    }
+
+    return openResult;
+}
+
 // Fetch stalls for a hawker center and display below the map
 function fetchStalls(hawkerCenterId, hawkerCenterName) {
     fetch(`fetch_stalls.php?id=${hawkerCenterId}`)
@@ -90,11 +120,13 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
 
             stalls.forEach(stall => {
                 // console.log(stall);
-
+                const openingDaysMessage = getOpeningDaysMessage(stall.opening_days);
                 stallList += `
                     <div class="stall" onclick="fetchMenu(${stall.id})">
                         <h3>${stall.stall_name}</h3>
                         <p>Opening hours: ${stall.opening_hours}</p>
+                        <p>Open on: ${openingDaysMessage}
+                        <p>Rating: ${'⭐'.repeat(stall.sum_rating/stall.total_number_of_rating)}</p>
                     </div>
                 `;
             });
