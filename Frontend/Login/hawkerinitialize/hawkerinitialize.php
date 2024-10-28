@@ -171,15 +171,18 @@ sqlsrv_close($conn);
             From: <input type="time" id="opening_time" name="opening_time" required> 
             To: <input type="time" id="closing_time" name="closing_time" required><br><br>
 
+            <!--minor change start here-->
             <label for="menu_items">Menu Items:</label>
             <div class="menu-items-container" id="menu-items-container">
                 <div class="menu-item-row">
                     <input type="text" name="item_name[]" placeholder="Food Name" required>
-                    <input type="text" name="item_price[]" class="price-input" placeholder="Price (SGD)" required>
+                    <input type="number" name="item_price[]" class="price-input" placeholder="Price (SGD)" required>
                     <input type="file" name="item_image[]" accept="image/*" required>
                     <textarea name="item_description[]" placeholder="Description" rows="2"></textarea>
                 </div>
             </div>
+            <!-- end of change -->
+
             <button type="button" onclick="addMenuItem()">Add Another Menu Item</button>
 
             <button type="submit">Initialize Profile</button>
@@ -193,13 +196,24 @@ sqlsrv_close($conn);
             newItemRow.className = 'menu-item-row';
             newItemRow.innerHTML = `
                 <input type="text" name="item_name[]" placeholder="Food Name" required>
-                <input type="text" name="item_price[]" class="price-input" placeholder="Price (SGD)" required>
+                <input type="number" name="item_price[]" class="price-input" placeholder="Price (SGD)" required>
                 <input type="file" name="item_image[]" accept="image/*" required>
                 <textarea name="item_description[]" placeholder="Description" rows="2"></textarea>
             `;
             container.appendChild(newItemRow);
         }
     </script>
+        
+        <!--add of code start here-->
+    <script>
+        document.querySelectorAll('input[type="text"],input[type="number"], input[type="time"], input[type="file"], textarea').forEach((field) => {
+            field.addEventListener('input', () => {
+                field.style.backgroundColor = field.value ? '#f0f0f0' : '#e0e0e0';
+            });
+        });
+    </script>
+    <!-- end of add code -->
+
 
 </body>
 </html>
