@@ -1,3 +1,4 @@
+// Load fault reports when the button is clicked
 document.getElementById('loadReportsBtn').addEventListener('click', function() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'fetch_fault_reports.php', true);
@@ -24,7 +25,8 @@ function deleteReport(faultReport) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function() {
-        if (xhr.status === 200 && xhr.responseText === 'success') {
+        console.log('Delete response:', xhr.responseText); // Log response for debugging
+        if (xhr.status === 200 && xhr.responseText.trim() === 'success') {
             // Find and remove the matching report item from the DOM
             document.querySelectorAll('.report-item').forEach(item => {
                 if (item.textContent.includes(faultReport)) {
@@ -43,6 +45,7 @@ function deleteReport(faultReport) {
 
     xhr.send('fault_report=' + encodeURIComponent(faultReport));
 }
+
 
 
 // Get stall_name to display

@@ -2,8 +2,11 @@
 session_start();
 include '../config.php';
 
+header('Content-Type: text/plain'); // Ensure plain text response for AJAX
+
 if (!isset($_SESSION['user_id'])) {
-    die("User not logged in.");
+    echo 'error';
+    exit;
 }
 
 $stall_owner = $_SESSION['user_id'];
