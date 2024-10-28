@@ -4,7 +4,7 @@ include '../config.php'; // Include your database connection
 
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id']; // Get the logged-in user's ID
+    $stall_owner = $_SESSION['user_id']; // Get the logged-in user's ID
 } else {
     die("User not logged in.");
 }
@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $opening_status = ($status === 'open') ? true : false; // True for open, false for close
 
         // Prepare the SQL query to update the opening status
-        $query = "UPDATE HawkerStalls SET opening_status = ? WHERE id = ?";
-        $params = array($opening_status, $user_id);
+        $query = "UPDATE HawkerStalls SET opening_status = ? WHERE stall_owner = ?";
+        $params = array($opening_status, $stall_owner);
         
         $stmt = sqlsrv_query($conn, $query, $params);
 

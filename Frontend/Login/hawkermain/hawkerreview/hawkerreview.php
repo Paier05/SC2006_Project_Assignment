@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php'; // Include your database connection
+include '../config.php'; // Include database connection
 
 // Check if the hawker is logged in
 if (isset($_SESSION['user_id'])) {

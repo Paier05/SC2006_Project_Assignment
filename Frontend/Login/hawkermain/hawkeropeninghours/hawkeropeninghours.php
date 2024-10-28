@@ -49,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die(print_r(sqlsrv_errors(), true));
     }
 
+    echo 'Opening hours updated successfully.';
+
     sqlsrv_free_stmt($stmt);
     sqlsrv_close($conn);
-
-    echo 'Opening hours updated successfully.';
 }
 
 ?>
