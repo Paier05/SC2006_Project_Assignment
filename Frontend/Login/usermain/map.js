@@ -83,6 +83,8 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
 
             if (stalls.length === 0) {
                 document.getElementById('stallList').innerHTML = `<p>No stalls found for ${hawkerCenterName}</p>`;
+                // Clear previous menu (if any)
+                document.getElementById('menuItems').innerHTML = '';
                 return;
             }
 
