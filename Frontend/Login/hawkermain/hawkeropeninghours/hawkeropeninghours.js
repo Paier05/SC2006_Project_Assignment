@@ -16,6 +16,7 @@ window.onload = function() {
 
                 openingDaysArray.forEach((dayStatus, index) => {
                     if (dayStatus === '1') {
+                        //alert(id);
                         document.querySelector(`.day-btn[data-day="${index}"]`).classList.add('selected');
                     }
                 });
@@ -64,6 +65,7 @@ document.getElementById('saveBtn').addEventListener('click', function() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
         if (xhr.status === 200) {
+            alert(id);
             alert('Opening hours saved successfully.');
         } else {
             alert('Error saving opening hours.');
