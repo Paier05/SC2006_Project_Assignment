@@ -14,9 +14,19 @@ body {
 }
 
 .container {
-    text-align: center;
-    margin-top: 50px;
-    flex: 1; /* Pushes main content to the top, leaving room for footer buttons */
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 h1 {

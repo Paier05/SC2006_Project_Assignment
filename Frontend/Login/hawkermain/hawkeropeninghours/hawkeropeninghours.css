@@ -10,8 +10,12 @@ body {
 }
 
 .container {
-    text-align: center;
-    padding: 50px;
+    max-width: 1000px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -22,7 +26,7 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
+    text-align: center;
     color: #333;
 }
 
