@@ -23,6 +23,7 @@ label {
     font-weight: bold;
 }
 
+/* minor changes at this part */
 input[type="text"],
 input[type="time"],
 input[type="file"],
@@ -30,9 +31,12 @@ textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    background-color: #e0e0e0; 
+    color: #555; 
+    border: none; 
     border-radius: 5px;
 }
+/*end of changes */
 
 .menu-items-container {
     margin: 20px 0;
@@ -49,9 +53,10 @@ textarea {
     margin: 10px 0;
 }
 
+/* button color changes */
 button {
-    background-color: #5cb85c;
-    color: white;
+    background-color: #f7c353;
+    color: #f9f9f9;
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -59,5 +64,6 @@ button {
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #F59500;
 }
+/* end of changes */
