@@ -9,9 +9,11 @@ if (isset($_SESSION['user_id'])) {
     die("User not logged in.");
 }
 
+echo "<script>var id = '".htmlspecialchars($id)."';</script>";
+
 // Fetch the existing opening hours
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $query = "SELECT opening_hours, opening_days FROM HawkerStalls WHERE id = 4";  //issue retrieving id from $user_id = $_SESSION['user_id']
+    $query = "SELECT opening_hours, opening_days FROM HawkerStalls WHERE id = ?";  //issue retrieving id from $user_id = $_SESSION['user_id']
     $params = array($id);
     $stmt = sqlsrv_query($conn, $query, $params);
 
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $opening_hours = $_POST['opening_hours'];
 
     // Update the opening hours and days
-    $query = "UPDATE HawkerStalls SET opening_hours = ?, opening_days = ? WHERE id = 4"; //issue retrieving id from $user_id = $_SESSION['user_id']
+    $query = "UPDATE HawkerStalls SET opening_hours = ?, opening_days = ? WHERE id = ?"; //issue retrieving id from $user_id = $_SESSION['user_id']
     $params = array($opening_hours, $opening_days, $id);
     $stmt = sqlsrv_query($conn, $query, $params);
 
