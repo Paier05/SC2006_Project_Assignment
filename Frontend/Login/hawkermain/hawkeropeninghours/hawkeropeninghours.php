@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id'])) {
     die("User not logged in.");
 }
 
-echo "<script>var id = '".htmlspecialchars($stall_owner)."';</script>";
+//echo "<script>var stall_owner = '".htmlspecialchars($stall_owner)."';</script>";
 
 // Fetch the existing opening hours
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

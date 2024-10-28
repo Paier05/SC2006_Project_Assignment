@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Query to fetch ratings and reviews for the specific hawker stall
-$sql = "SELECT rating, review, user_id FROM StallRatings WHERE hawker_stall_id = 4 AND id = 4";
+$sql = "SELECT rating, review, user_email FROM StallRatings WHERE hawker_stall_id = ?";
 $params = array($hawker_stall_id); // Prevent SQL injection
 
 $stmt = sqlsrv_query($conn, $sql, $params);
@@ -24,7 +24,7 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     echo '<div class="review-item">';
     echo '<h3>Rating: <span class="rating">' . htmlspecialchars($row['rating']) . ' / 5</span></h3>';
     echo '<p>' . htmlspecialchars($row['review']) . '</p>';
-    echo '<p><strong>Reviewed by Customer ID: ' . htmlspecialchars($row['user_id']) . '</strong></p>';
+    echo '<p><strong>Reviewed by Customer ID: ' . htmlspecialchars($row['user_email']) . '</strong></p>';
     echo '</div>';
 }
 
