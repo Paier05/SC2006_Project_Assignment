@@ -44,14 +44,14 @@ label {
 }
 
 textarea {
-    width: 100%;
+    width: 96.2%;
     max-width: 100%;
-    height: 80px;
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    resize: vertical; 
+    resize: none; /* Disable resizing */
+    overflow: hidden; /* Hide scrollbars */
 }
 
 button {

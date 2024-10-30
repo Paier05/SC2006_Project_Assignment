@@ -16,6 +16,11 @@ function loadStallInfo() {
         .catch(error => console.error("Error:", error));
 }
 
+function autoResize(textarea) {
+    textarea.style.height = "auto"; // Reset height
+    textarea.style.height = textarea.scrollHeight + "px"; // Set height to scroll height
+}
+
 // Handle fault report form submission
 document.getElementById("faultForm").addEventListener("submit", function(event) {
     event.preventDefault();
