@@ -1,29 +1,85 @@
+/* Universal font */
+* {
+    font-family: Arial, sans-serif;
+}
+
 /* CSS for Map Container */
 #map {
     height: 500px;
     width: 100%;
 }
 
-/* Add basic styling for the modal */
-#stallList {
-    margin-top: 20px;
+/* Styling each stall card */
+.stall {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFAF0;
+    padding: 20px;
+    border-radius: 20px;
+    width: 200px;
+    text-align: center;
+    color: black; 
+    box-shadow: 0 4px 8px rgba(0.1, 0.1, 0.1, 0.2); /* Shadow */
 }
 
-.stall {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    width: 300px;
+/* Stall image styling */
+.stall img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Direction button styling */
+#directionButton {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Review button styling */
+.stall .review-button {
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Rating and timing styling */
+.stall .timing, .stall .rating {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.stall .rating {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+#stallContainer {
+    margin-top: 20px;
     text-align: center;
 }
 
-.stall img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+#stallHeading {
+    margin-bottom: 20px;
 }
 
-#menuItems {
-    margin-top: 20px;
+#stallList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
