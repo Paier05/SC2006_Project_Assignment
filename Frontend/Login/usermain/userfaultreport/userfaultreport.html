@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fault Report Page</title>
+    <link rel="stylesheet" href="userfaultreport.css">
+</head>
+<body>
+    <div id="faultContainer">
+        <h1>Fault Report for <span id="stallName"></span></h1>
+        <p id="openingHours"></p>
+
+        <!-- Review Submission Form -->
+        <h2>Submit a Fault Report</h2>
+        <form id="faultForm">
+            <!-- Report System -->
+            <label for="report">Enter Fault Report:</label>
+            
+            <textarea name="fault_text" id="faultText" placeholder="Write your fault report..." required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <button onclick="location.href='../usermain.html'">Main Menu</button>;
+
+    <script src="userfaultreport.js"></script>
+</body>
+</html>
