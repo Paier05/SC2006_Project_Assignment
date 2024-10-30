@@ -9,6 +9,68 @@
     width: 100%;
 }
 
+
+/* Main container */
+#container {
+    display: flex;
+    height: 500px; /* Full viewport height */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 300px;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Search bar styling */
+#search-bar {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#search-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+/* Sidebar for hawker center list */
+#hawker-list {
+    flex: 1;
+    width: 300px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Style each item in the list */
+.hawker-item {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.hawker-item:hover {
+    background-color: #e9ecef;
+}
+
+/* Add basic styling for the modal */
+#stallList {
+    margin-top: 20px;
+}
+
+
+
 /* Styling each stall card */
 .stall {
     display: flex;

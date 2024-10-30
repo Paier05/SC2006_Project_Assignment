@@ -1,6 +1,7 @@
 <?php
 include '../config.php';
-<<<<<<< HEAD
+
+// <<< HEAD
 
 // Get the stall ID from the request
 $stallId = isset($_GET['stall_id']) ? (int)$_GET['stall_id'] : 0;
@@ -16,8 +17,9 @@ if ($stallId!=0) {
     echo "Invalid stall ID.";
     exit;
 }
-?>
-=======
+
+// ======
+
 header('Content-Type: application/json');
 
 // Check if request is to fetch stall details (GET) or submit fault report (POST)
@@ -67,4 +69,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 sqlsrv_close($conn);
 ?>
->>>>>>> 084d730c25e271835e43c8f86596be246f7ac7cb

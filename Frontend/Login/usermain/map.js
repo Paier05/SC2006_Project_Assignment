@@ -21,56 +21,47 @@ function initMap() {
                 });
 
                 marker.addListener('click', function() {
+                    map.setCenter({ lat: parseFloat(location.lat), lng: parseFloat(location.lng) });
+                    map.setZoom(15);
                     infowindow.open(map, marker);
                     fetchStalls(location.id, location.name);
-                });                
+                });                  
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: `<h3>${location.name}</h3>`
+                    content: `<h3>${location.name}</h3><p>${location.location}</p>`
                 });
 
-                /*
-                marker.addListener('click', function() {
-                    // Show a loading message while fetching stalls
-                    var infowindow = new google.maps.InfoWindow({
-                        content: `<h3>${location.name}</h3><p>Loading stalls...</p>`
-                    });
+                
+                // Create list item and add click event
+                const listItem = document.createElement("div");
+                listItem.className = "hawker-item";
+                listItem.innerHTML = `<strong>${location.name}</strong><br>${location.location}`;
+                listItem.style.cursor = "pointer";
+                listItem.style.margin = "10px 0";
+                listItem.addEventListener("click", () => {
+                    map.setCenter({ lat: parseFloat(location.lat), lng: parseFloat(location.lng) });
+                    map.setZoom(15);
                     infowindow.open(map, marker);
-
-                    // Fetch stalls for this hawker center
-                    fetch(`fetch_stalls.php?id=${location.id}`)
-                        .then(response => response.json())
-                        .then(stalls => {
-                            var stallsContent = '<ul>';
-                            if (stalls.length > 0) {
-                                stalls.forEach(stall => {
-                                    stallsContent += `<li>${stall}</li>`;
-                                });
-                            } else {
-                                stallsContent += '<li>No stalls available</li>';
-                            }
-                            stallsContent += '</ul>';
-
-                            // Update the info window with the stalls list
-                            infowindow.setContent(`
-                                <h3>${location.name}</h3>
-                                <p>Stalls:</p>
-                                ${stallsContent}
-                            `);
-                        })
-                        .catch(error => {
-                            // Handle errors (e.g., no stalls or server error)
-                            infowindow.setContent(`
-                                <h3>${location.name}</h3>
-                                <p>Failed to load stalls.</p>
-                            `);
-                        });                            
+                    fetchStalls(location.id, location.name);
                 });
-                */
+                document.getElementById("hawker-list").appendChild(listItem);
             });
         })
         .catch(error => console.error('Error:', error)); 
 }
+
+
+// Real-time filter function for the local list search
+document.getElementById("search-input").addEventListener("input", function() {
+    const filterText = this.value.toLowerCase();
+    const hawkerItems = document.querySelectorAll(".hawker-item");
+
+    hawkerItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filterText) ? "" : "none"; // Toggle display based on match
+    });
+});
+
 
 function getOpeningDaysMessage(opening_days) {
     // Convert the string to an array of 1s and 0s
