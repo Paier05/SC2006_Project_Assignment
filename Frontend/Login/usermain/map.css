@@ -20,14 +20,9 @@
     overflow: hidden;
 }
 
-#sidebar {
-    width: 300px;
-    background-color: #f8f9fa;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
+#sidebar h2 {
+    display: none; /* Hide extra heading in sidebar */
 }
-
 
 /* Search bar styling */
 #search-bar {
@@ -41,7 +36,6 @@
     box-sizing: border-box;
     font-size: 16px;
 }
-
 
 /* Sidebar for hawker center list */
 #hawker-list {
@@ -68,8 +62,6 @@
 #stallList {
     margin-top: 20px;
 }
-
-
 
 /* Styling each stall card */
 .stall {
@@ -134,21 +126,38 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.menuContainer {
+/* Menu container styling */
+#menuContainer {
+    margin-top: 20px;
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to a new line if needed */
-    gap: 15px; /* Space between menu items */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
+#menuHeading {
+    margin-bottom: 20px; /* Space between heading and menu items */
+}
+
+/* Menu items arranged side by side with wrapping */
+#menuItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between each menu item */
+    width: 100%;
+}
+
+/* Styling for each individual menu item */
 #menuItems > div {
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #FFFAF0;
     text-align: center;
-    min-width: 100px; 
+    width: 150px; /* Width of each menu item */
     border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 #stallContainer {
     margin-top: 20px;
