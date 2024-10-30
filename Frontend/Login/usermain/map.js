@@ -128,6 +128,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                         <p>Open on: ${openingDaysMessage}
                         <p>Rating: ${'⭐'.repeat(stall.sum_rating/stall.total_number_of_rating)}</p>
                         <button onclick="event.stopPropagation(); redirectToReviewPage(${stall.id})">Review</button>
+                        <button onclick="event.stopPropagation(); redirectToFaultReportPage(${stall.id})">Fault Report</button>
                     </div>
                 `;
             });
@@ -169,6 +170,10 @@ function fetchMenu(stallId) {
 // Redirect function
 function redirectToReviewPage(stallId) {
     window.location.href = `./review/review.html?stall_id=${stallId}`;
+}
+
+function redirectToFaultReportPage(stallId){
+    window.location.href = `./userfaultreport/userfaultreport.html?stall_id=${stallId}`;
 }
 
 // Load the map
