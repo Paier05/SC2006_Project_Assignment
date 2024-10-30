@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 session_start();
 
-include '../config.php';
+include '../../config.php';
 
 // Initialize response array
 $response = ["success" => false];

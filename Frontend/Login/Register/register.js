@@ -63,7 +63,7 @@ document.getElementById('customerForm').addEventListener('submit', function(even
 
     // Check if passwords match
     if (password !== repassword) {
-        alert("Passwords do not match!");
+        alert("Password mismatch!");
         return;
     }
     

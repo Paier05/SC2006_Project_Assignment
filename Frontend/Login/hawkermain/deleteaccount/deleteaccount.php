@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "../config.php"; // Start the connection with the Azure SQL database
+include "../../config.php"; // Start the connection with the Azure SQL database
 
 //----------------------------------------------------------------------------------------------------------------------------------------
 // Assuming the user_id is stored in the session after login

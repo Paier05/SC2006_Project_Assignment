@@ -1,5 +1,5 @@
 <?php
-include '../config.php';
+include '../../config.php';
 header('Content-Type: application/json');
 
 // Check if request is to fetch stall details (GET) or submit fault report (POST)

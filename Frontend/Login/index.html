@@ -11,14 +11,14 @@
         <form class="login-form" action="login.php" method="POST">
             <h1 class="heading">Welcome to Hawker Stalk!</h1>            
             <h1 class="heading">Login</h1>            
-            <select id="domain" name="domain" class="input-select">
+            <select id="domain" name="domain" class="input-select" required>
                 <option>Choose Domain</option>
                 <option value="hawker">Hawker</option>
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
-            <input type="email" id="email" name="email" placeholder="Email" class="input-field">
-            <input type="password" id="password" name="password" placeholder="Password" class="input-field">
+            <input type="email" id="email" name="email" placeholder="Email" class="input-field" required>
+            <input type="password" id="password" name="password" placeholder="Password" class="input-field" required>
             <button type="submit" class="login-btn">Login</button>
             <div class="additional-links">
                 <a href="./Register/register.html">Sign Up</a>

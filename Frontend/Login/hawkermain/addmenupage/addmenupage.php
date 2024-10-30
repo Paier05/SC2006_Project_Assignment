@@ -1,7 +1,7 @@
 <?php
 // Start session
 session_start();
-include '../config.php'; // Include your database connection
+include '../../config.php'; // Include your database connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve from input

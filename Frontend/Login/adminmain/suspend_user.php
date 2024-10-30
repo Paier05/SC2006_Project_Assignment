@@ -1,5 +1,5 @@
 <?php
-include 'config.php'; // This should include your connection code
+include '../config.php'; // This should include your connection code
 
 if (isset($_GET['user_id'])) {
     $userId = $_GET['user_id'];
