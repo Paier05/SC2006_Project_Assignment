@@ -167,7 +167,6 @@ function fetchMenu(stallId) {
         .catch(error => console.error('Error:', error));
 }
 
-// Redirect function
 // Redirect function (Review Page)
 function redirectToReviewPage(stallId) {
     window.location.href = `./review/review.html?stall_id=${stallId}`;

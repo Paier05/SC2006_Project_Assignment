@@ -16,7 +16,6 @@ if ($stallId!=0) {
     echo "Invalid stall ID.";
     exit;
 }
-?>?>
 ?>
 =======
 header('Content-Type: application/json');
