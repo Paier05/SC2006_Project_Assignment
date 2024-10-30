@@ -3,7 +3,7 @@
 include '../config.php';
 
 // Query to retrieve the locations
-$sql = "SELECT ID, NameOfCenter, Latitude, Longitude FROM HawkerCenter WHERE Latitude IS NOT NULL AND Longitude IS NOT NULL";
+$sql = "SELECT ID, NameOfCenter, LocationOfCenter, Latitude, Longitude FROM HawkerCenter WHERE Latitude IS NOT NULL AND Longitude IS NOT NULL";
 $stmt = sqlsrv_query($conn, $sql);
 
 $locations = [];
@@ -14,6 +14,7 @@ if($stmt !== false) {
         $locations[] = [
             'id' => $row['ID'],
             'name' => $row['NameOfCenter'],
+            'location' => $row['LocationOfCenter'],
             'lat' => $row['Latitude'],
             'lng' => $row['Longitude'],
         ];

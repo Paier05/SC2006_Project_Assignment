@@ -2,30 +2,24 @@
 <?php
 session_start();
 include "../config.php";
-/*
-$serverName = "hawker.database.windows.net";
-$connectionOptions = array(
-    "Database" => "Hawker_App",
-    "UID" => "team26",
-    "PWD" => "Wearegood!",
-    "LoginTimeout" => 30,
-    "Encrypt" => 1,
-    "TrustServerCertificate" => 0
-);
 
-// Establishes the connection
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-
-
-// Check if the connection is successful
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-*/
 // Get form data
 $domain = $_POST['domain']; 
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Secure password hashing
+
+$sql = "SELECT user_id, password, domain, status FROM users WHERE email = ?";
+$params = array($email);
+$stmt = sqlsrv_query($conn, $sql, $params);
+
+$user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+// Email found at database
+if ($user) {
+    echo "Email exists, do you want to login?";
+    exit;
+}
+
 
 $_SESSION['mail'] = $_POST['email'];
 
@@ -67,7 +61,7 @@ if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 } else {
     header("Location: ../ConfirmationPage/confirmation.php"); // Redirect to the login page   // Can also redirect to php file for user specific webpage
-    echo "Customer registration successful!";
+    echo "Account created successfully!";
 }
 
 sqlsrv_close($conn);

@@ -1,15 +1,6 @@
 <?php
 // Connect to the database
-$serverName = "hawker.database.windows.net"; 
-$connectionOptions = array(
-    "Database" => "Hawker_App",
-    "Uid" => "team26",
-    "PWD" => "Wearegood!"
-);
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
+include '../config.php';
 
 // Sanitize sort input to avoid SQL injection
 $allowed_sort_columns = ['domain', 'email', 'status'];

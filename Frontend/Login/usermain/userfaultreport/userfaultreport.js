@@ -29,7 +29,7 @@ document.getElementById("faultForm").addEventListener("submit", function(event) 
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert(data.message);
+            alert("Fault Report submitted successfully");
             document.getElementById("faultText").value = "";
             loadStallInfo(); // Optionally refresh stall info
         } else {

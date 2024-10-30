@@ -21,56 +21,47 @@ function initMap() {
                 });
 
                 marker.addListener('click', function() {
+                    map.setCenter({ lat: parseFloat(location.lat), lng: parseFloat(location.lng) });
+                    map.setZoom(15);
                     infowindow.open(map, marker);
                     fetchStalls(location.id, location.name);
-                });                
+                });                  
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: `<h3>${location.name}</h3>`
+                    content: `<h3>${location.name}</h3><p>${location.location}</p>`
                 });
 
-                /*
-                marker.addListener('click', function() {
-                    // Show a loading message while fetching stalls
-                    var infowindow = new google.maps.InfoWindow({
-                        content: `<h3>${location.name}</h3><p>Loading stalls...</p>`
-                    });
+                
+                // Create list item and add click event
+                const listItem = document.createElement("div");
+                listItem.className = "hawker-item";
+                listItem.innerHTML = `<strong>${location.name}</strong><br>${location.location}`;
+                listItem.style.cursor = "pointer";
+                listItem.style.margin = "10px 0";
+                listItem.addEventListener("click", () => {
+                    map.setCenter({ lat: parseFloat(location.lat), lng: parseFloat(location.lng) });
+                    map.setZoom(15);
                     infowindow.open(map, marker);
-
-                    // Fetch stalls for this hawker center
-                    fetch(`fetch_stalls.php?id=${location.id}`)
-                        .then(response => response.json())
-                        .then(stalls => {
-                            var stallsContent = '<ul>';
-                            if (stalls.length > 0) {
-                                stalls.forEach(stall => {
-                                    stallsContent += `<li>${stall}</li>`;
-                                });
-                            } else {
-                                stallsContent += '<li>No stalls available</li>';
-                            }
-                            stallsContent += '</ul>';
-
-                            // Update the info window with the stalls list
-                            infowindow.setContent(`
-                                <h3>${location.name}</h3>
-                                <p>Stalls:</p>
-                                ${stallsContent}
-                            `);
-                        })
-                        .catch(error => {
-                            // Handle errors (e.g., no stalls or server error)
-                            infowindow.setContent(`
-                                <h3>${location.name}</h3>
-                                <p>Failed to load stalls.</p>
-                            `);
-                        });                            
+                    fetchStalls(location.id, location.name);
                 });
-                */
+                document.getElementById("hawker-list").appendChild(listItem);
             });
         })
         .catch(error => console.error('Error:', error)); 
 }
+
+
+// Real-time filter function for the local list search
+document.getElementById("search-input").addEventListener("input", function() {
+    const filterText = this.value.toLowerCase();
+    const hawkerItems = document.querySelectorAll(".hawker-item");
+
+    hawkerItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(filterText) ? "" : "none"; // Toggle display based on match
+    });
+});
+
 
 function getOpeningDaysMessage(opening_days) {
     // Convert the string to an array of 1s and 0s
@@ -102,14 +93,17 @@ function getOpeningDaysMessage(opening_days) {
     return openResult;
 }
 
-// Fetch stalls for a hawker center and display below the map
+// this function is edited
 function fetchStalls(hawkerCenterId, hawkerCenterName) {
     fetch(`fetch_stalls.php?id=${hawkerCenterId}`)
         .then(response => response.json())
         .then(stalls => {
             console.log(stalls);
 
-            var stallList = `<h2>Stalls at ${hawkerCenterName}</h2>`;
+            // Set the heading
+            document.getElementById('stallHeading').innerText = `Stalls at ${hawkerCenterName}`;
+
+            var stallList = '';
 
             if (stalls.length === 0) {
                 document.getElementById('stallList').innerHTML = `<p>No stalls found for ${hawkerCenterName}</p>`;
@@ -125,7 +119,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                     <div class="stall" onclick="fetchMenu(${stall.id})">
                         <h3>${stall.stall_name}</h3>
                         <p>Opening hours: ${stall.opening_hours}</p>
-                        <p>Open on: ${openingDaysMessage}
+                        <p>Open on: ${openingDaysMessage}</p>
                         <p>Rating: ${'⭐'.repeat(stall.sum_rating/stall.total_number_of_rating)}</p>
                         <button onclick="event.stopPropagation(); redirectToReviewPage(${stall.id})">Review</button>
                         <button onclick="event.stopPropagation(); redirectToFaultReportPage(${stall.id})">Fault Report</button>
@@ -133,7 +127,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                 `;
             });
 
-            // Inject the stall list below the map
+            // Inject the stall list below the heading
             document.getElementById('stallList').innerHTML = stallList;
 
             // Clear previous menu (if any)
@@ -141,6 +135,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
         })
         .catch(error => console.error('Error:', error));
 }
+// end of function editing
 
 // Fetch menu for a specific stall and display below the stall list
 function fetchMenu(stallId) {
@@ -167,10 +162,46 @@ function fetchMenu(stallId) {
         .catch(error => console.error('Error:', error));
 }
 
-// Redirect function (Review Page)
+/*// Function to display the "Menu" heading
+function displayMenuHeading(stallId) {
+    fetch(`fetch_menu.php?stall_id=${stallId}`)
+        .then(response => response.json())
+        .then(menuHeadings => {
+            var menuContent = '<h2>Menu</h2>';
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function to fetch and display menu items
+function fetchMenu(stallId) {
+    fetch(`fetch_menu.php?stall_id=${stallId}`)
+        .then(response => response.json())
+        .then(menuItems => {
+            const menuContainer = document.getElementById("menuItems");
+            menuContainer.innerHTML = ''; // Clear previous items
+
+            // Generate menu item HTML
+            menuItems.forEach(item => {
+                const menuItemDiv = document.createElement("div");
+                menuItemDiv.className = "menuItem"; // Add class for styling
+                menuItemDiv.innerHTML = `
+                    <h3>${item.ItemName}</h3>
+                    <img src="../hawkerinitialize/uploads/${item.ItemImage}" alt="${item.ItemName}" style="width:100px;height:100px;">
+                    <p>${item.ItemDescription}</p>
+                    <p>Price: $${item.Price}</p>
+                `;
+                menuContainer.appendChild(menuItemDiv); // Append each menu item
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}*/
+
+
+// Redirect function
 function redirectToReviewPage(stallId) {
     window.location.href = `./review/review.html?stall_id=${stallId}`;
 }
+
 //Redirect function (Fault Report Page)
 function redirectToFaultReportPage(stallId){
     window.location.href = `./userfaultreport/userfaultreport.html?stall_id=${stallId}`;

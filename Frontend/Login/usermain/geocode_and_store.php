@@ -4,7 +4,7 @@
 // Location are stored as address
 // Convert the address to geographicalcoordinate (longitude and latitude)
 
-include 'config.php';
+include '../config.php';
 
 // Google Maps Geocoding API key
 $apiKey = 'AIzaSyCzh4khfKnyc3v9JIN4LhAR0ZxCw8Xsa_s';

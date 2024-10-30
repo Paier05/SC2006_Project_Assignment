@@ -1,5 +1,5 @@
 <?php
-include '../config.php';
+include '../../config.php';
 
 // Get the stall ID from the request
 $stallId = isset($_GET['stall_id']) ? (int)$_GET['stall_id'] : 0;
