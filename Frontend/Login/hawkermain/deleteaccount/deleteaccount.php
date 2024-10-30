@@ -61,24 +61,6 @@ if ($row) {
     if (password_verify($password, $hashed_password)) {
         // Password is correct, proceed to delete the account
 
-        // Delete from users
-        $delete_sql_user = "DELETE FROM users WHERE user_id = ?";
-        $delete_stmt_user = sqlsrv_query($conn, $delete_sql_user, array($user_id));
-
-        if ($delete_stmt_user === false) {
-            die(print_r(sqlsrv_errors(), true));
-        }
-        sqlsrv_free_stmt($delete_stmt_user);
-
-        // Delete from HawkerStalls
-        $delete_sql_hawker = "DELETE FROM HawkerStalls WHERE stall_owner = ?";
-        $delete_stmt_hawker = sqlsrv_query($conn, $delete_sql_hawker, array($user_id));
-
-        if ($delete_stmt_hawker === false) {
-            die(print_r(sqlsrv_errors(), true));
-        }
-        sqlsrv_free_stmt($delete_stmt_hawker);
-
         // Delete the stall rating
         $delete_sql_rating = "DELETE FROM StallRatings WHERE hawker_stall_id = ?";
         $delete_stmt_rating = sqlsrv_query($conn, $delete_sql_rating, array($hawker_stall_id));
@@ -92,10 +74,38 @@ if ($row) {
         $delete_sql_menu = "DELETE FROM StallMenus WHERE StallID = ?";
         $delete_stmt_menu = sqlsrv_query($conn, $delete_sql_menu, array($hawker_stall_id));
 
-        if ($delete_stmt_menu === false) {
+        if($delete_stmt_menu === false) {
             die(print_r(sqlsrv_errors(), true));
         }
         sqlsrv_free_stmt($delete_stmt_menu);
+
+
+        // Delete the fault report
+        $delete_sql_fault = "DELETE FROM faultReport WHERE stall_owner = ?";
+        $delete_stmt_fault = sqlsrv_query($conn, $delete_sql_menu, array($hawker_stall_id));
+
+        if ($delete_stmt_fault === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($delete_stmt_fault);
+
+        // Delete from HawkerStalls
+        $delete_sql_hawker = "DELETE FROM HawkerStalls WHERE id = ?";
+        $delete_stmt_hawker = sqlsrv_query($conn, $delete_sql_hawker, array($hawker_stall_id));
+
+        if ($delete_stmt_hawker === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($delete_stmt_hawker);
+
+        // Delete from users
+        $delete_sql_user = "DELETE FROM users WHERE user_id = ?";
+        $delete_stmt_user = sqlsrv_query($conn, $delete_sql_user, array($user_id));
+        
+        if ($delete_stmt_user === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        sqlsrv_free_stmt($delete_stmt_user);
 
         echo "Account deleted successfully.";
     } else {
