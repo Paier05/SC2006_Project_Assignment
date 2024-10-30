@@ -171,6 +171,41 @@ function fetchMenu(stallId) {
         .catch(error => console.error('Error:', error));
 }
 
+/*// Function to display the "Menu" heading
+function displayMenuHeading(stallId) {
+    fetch(`fetch_menu.php?stall_id=${stallId}`)
+        .then(response => response.json())
+        .then(menuHeadings => {
+            var menuContent = '<h2>Menu</h2>';
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+// Function to fetch and display menu items
+function fetchMenu(stallId) {
+    fetch(`fetch_menu.php?stall_id=${stallId}`)
+        .then(response => response.json())
+        .then(menuItems => {
+            const menuContainer = document.getElementById("menuItems");
+            menuContainer.innerHTML = ''; // Clear previous items
+
+            // Generate menu item HTML
+            menuItems.forEach(item => {
+                const menuItemDiv = document.createElement("div");
+                menuItemDiv.className = "menuItem"; // Add class for styling
+                menuItemDiv.innerHTML = `
+                    <h3>${item.ItemName}</h3>
+                    <img src="../hawkerinitialize/uploads/${item.ItemImage}" alt="${item.ItemName}" style="width:100px;height:100px;">
+                    <p>${item.ItemDescription}</p>
+                    <p>Price: $${item.Price}</p>
+                `;
+                menuContainer.appendChild(menuItemDiv); // Append each menu item
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}*/
+
+
 // Redirect function
 function redirectToReviewPage(stallId) {
     window.location.href = `./review/review.html?stall_id=${stallId}`;

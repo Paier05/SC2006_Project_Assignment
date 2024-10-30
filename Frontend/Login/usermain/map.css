@@ -72,6 +72,22 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.menuContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to a new line if needed */
+    gap: 15px; /* Space between menu items */
+}
+
+#menuItems > div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #FFFAF0;
+    text-align: center;
+    min-width: 100px; 
+    border-radius: 5px;
+}
+
+
 #stallContainer {
     margin-top: 20px;
     text-align: center;
