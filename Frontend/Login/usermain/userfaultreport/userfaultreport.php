@@ -1,36 +1,16 @@
 <?php
 include '../config.php';
-
-// <<< HEAD
-
-// Get the stall ID from the request
-$stallId = isset($_GET['stall_id']) ? (int)$_GET['stall_id'] : 0;
-
-if ($stallId!=0) {
-    // Fetch stall details
-    $sql = "SELECT * FROM HawkerStalls WHERE id = ?";
-    $params = array($stallId);
-    $stmt = sqlsrv_query($conn, $sql, $params);
-    $stall = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
-
-} else {
-    echo "Invalid stall ID.";
-    exit;
-}
-
-// ======
-
 header('Content-Type: application/json');
 
 // Check if request is to fetch stall details (GET) or submit fault report (POST)
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Get stall ID from the request
-    $id = isset($_GET['stall_id']) ? (int)$_GET['stall_id'] : 0;
+    $stall_id = isset($_GET['stall_id']) ? (int)$_GET['stall_id'] : 0;
 
-    if ($id !== 0) {
+    if ($stall_id !== 0) {
         // Fetch stall details
         $sql = "SELECT stall_name, opening_hours FROM HawkerStalls WHERE id = ?";
-        $params = array($id);
+        $params = array($stall_id);
         $stmt = sqlsrv_query($conn, $sql, $params);
 
         if ($stmt && $stall = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
