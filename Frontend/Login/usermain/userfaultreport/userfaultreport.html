@@ -7,22 +7,21 @@
     <link rel="stylesheet" href="userfaultreport.css">
 </head>
 <body>
-    <div id="faultContainer">
+    <div class="container">
         <h1>Fault Report for <span id="stallName"></span></h1>
-        <p id="openingHours"></p>
+        <p id="openingHours" class="subtitle"></p>
 
         <!-- Review Submission Form -->
         <h2>Submit a Fault Report</h2>
         <form id="faultForm">
             <!-- Report System -->
-            <label for="report">Enter Fault Report:</label>
-            
-            <textarea name="fault_text" id="faultText" placeholder="Write your fault report..." required></textarea><br>
+            <label for="faultText">Enter Fault Report:</label>
+            <textarea name="fault_text" id="faultText" placeholder="Write your fault report..." required></textarea>
             <button type="submit">Submit</button>
         </form>
-    </div>
 
-    <button onclick="location.href='../usermain.html'">Main Menu</button>;
+        <button class="menu-button" onclick="location.href='../usermain.html'">Main Menu</button>
+    </div>
 
     <script src="userfaultreport.js"></script>
 </body>
