@@ -167,11 +167,11 @@ function fetchMenu(stallId) {
         .catch(error => console.error('Error:', error));
 }
 
-// Redirect function
+// Redirect function (Review Page)
 function redirectToReviewPage(stallId) {
     window.location.href = `./review/review.html?stall_id=${stallId}`;
 }
-
+//Redirect function (Fault Report Page)
 function redirectToFaultReportPage(stallId){
     window.location.href = `./userfaultreport/userfaultreport.html?stall_id=${stallId}`;
 }
