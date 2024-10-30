@@ -56,6 +56,7 @@ function loadStallInfo() {
 
 // Load stall info and reviews when the page loads
 loadStallInfo();loadStallInfo();
+loadStallInfo();
 =======
 document.getElementById("faultForm").addEventListener("submit", function(event) {
     event.preventDefault();

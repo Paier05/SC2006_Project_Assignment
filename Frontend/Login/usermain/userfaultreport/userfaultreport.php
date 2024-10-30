@@ -17,6 +17,7 @@ if ($stallId!=0) {
     exit;
 }
 ?>?>
+?>
 =======
 header('Content-Type: application/json');
 
