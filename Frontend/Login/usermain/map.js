@@ -102,14 +102,17 @@ function getOpeningDaysMessage(opening_days) {
     return openResult;
 }
 
-// Fetch stalls for a hawker center and display below the map
+// this function is edited
 function fetchStalls(hawkerCenterId, hawkerCenterName) {
     fetch(`fetch_stalls.php?id=${hawkerCenterId}`)
         .then(response => response.json())
         .then(stalls => {
             console.log(stalls);
 
-            var stallList = `<h2>Stalls at ${hawkerCenterName}</h2>`;
+            // Set the heading
+            document.getElementById('stallHeading').innerText = `Stalls at ${hawkerCenterName}`;
+
+            var stallList = '';
 
             if (stalls.length === 0) {
                 document.getElementById('stallList').innerHTML = `<p>No stalls found for ${hawkerCenterName}</p>`;
@@ -125,7 +128,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                     <div class="stall" onclick="fetchMenu(${stall.id})">
                         <h3>${stall.stall_name}</h3>
                         <p>Opening hours: ${stall.opening_hours}</p>
-                        <p>Open on: ${openingDaysMessage}
+                        <p>Open on: ${openingDaysMessage}</p>
                         <p>Rating: ${'⭐'.repeat(stall.sum_rating/stall.total_number_of_rating)}</p>
                         <button onclick="event.stopPropagation(); redirectToReviewPage(${stall.id})">Review</button>
                         <button onclick="event.stopPropagation(); redirectToFaultReportPage(${stall.id})">Fault Report</button>
@@ -133,7 +136,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                 `;
             });
 
-            // Inject the stall list below the map
+            // Inject the stall list below the heading
             document.getElementById('stallList').innerHTML = stallList;
 
             // Clear previous menu (if any)
@@ -141,6 +144,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
         })
         .catch(error => console.error('Error:', error));
 }
+// end of function editing
 
 // Fetch menu for a specific stall and display below the stall list
 function fetchMenu(stallId) {
@@ -167,10 +171,11 @@ function fetchMenu(stallId) {
         .catch(error => console.error('Error:', error));
 }
 
-// Redirect function (Review Page)
+// Redirect function
 function redirectToReviewPage(stallId) {
     window.location.href = `./review/review.html?stall_id=${stallId}`;
 }
+
 //Redirect function (Fault Report Page)
 function redirectToFaultReportPage(stallId){
     window.location.href = `./userfaultreport/userfaultreport.html?stall_id=${stallId}`;
