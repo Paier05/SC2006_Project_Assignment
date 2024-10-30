@@ -142,22 +142,32 @@ function fetchMenu(stallId) {
     fetch(`fetch_menu.php?stall_id=${stallId}`)
         .then(response => response.json())
         .then(menuItems => {
-            // console.log(menuItems);
+            const menuContainer = document.getElementById("menuContainer");
+            const menuItemsContainer = document.getElementById("menuItems");
+            
+            // Clear previous menu items
+            menuItemsContainer.innerHTML = '';
 
-            var menuContent = '<h2>Menu</h2>';
-            menuItems.forEach(item => {
-                menuContent += `
-                    <div class="menuItem">
+            if (menuItems.length > 0) {
+                // Show the menu container
+                menuContainer.style.display = 'block';
+
+                // Generate menu item HTML and append it to menuItems container
+                menuItems.forEach(item => {
+                    const menuItemDiv = document.createElement("div");
+                    menuItemDiv.className = "menuItem";
+                    menuItemDiv.innerHTML = `
                         <h3>${item.ItemName}</h3>
                         <img src="../hawkerinitialize/uploads/${item.ItemImage}" alt="${item.ItemName}" style="width:100px;height:100px;">
                         <p>${item.ItemDescription}</p>
                         <p>Price: $${item.Price}</p>
-                    </div>
-                `;
-            });
-
-            // Inject the menu items below the stall list
-            document.getElementById('menuItems').innerHTML = menuContent;
+                    `;
+                    menuItemsContainer.appendChild(menuItemDiv);
+                });
+            } else {
+                // Hide the menu container if no menu items are available
+                menuContainer.style.display = 'none';
+            }
         })
         .catch(error => console.error('Error:', error));
 }
