@@ -23,6 +23,17 @@ body {
     padding: 20px;
 }
 
+.cross {
+    display: none; /* Initially hide the cross */
+    margin-left: 10px; /* Space between name and cross */
+    color: red; /* Color of the cross */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.menu-item:hover .cross {
+    display: inline; /* Show the cross on hover */
+}
+
 .menu-item {
     background-color: #f8e6be;
     padding: 10px 20px;
