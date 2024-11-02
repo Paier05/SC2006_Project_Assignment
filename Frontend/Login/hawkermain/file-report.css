@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.header h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.close-button {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    background-color: #d2a74b;
+    border: none;
+    color: black;
+    font-size: 1.5em;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #b58b3e;
+}
+
+.icon {
+    font-size: 1.8em;
+    cursor: pointer;
+    position: absolute;
+    right: 525px;
+}
+
+.content {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-button {
+    font-size: 1.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    transition: background-color 0.3s;
+}
+
+.report-box {
+    width: 80%;
+    height: 200px;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #e6e6e6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.submit-button {
+    background-color: #f0c74b;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #f29f3f;
+}
+
+.info-box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #e6e6e6;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+p {
+    font-size: 1.2em;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.terms {
+    text-align: right;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 20px;
+}
