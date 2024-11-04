@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Registration</title>
     <link rel="stylesheet" href="registerStyles.css">
-    <script src="register.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="form-container">
         <form id="customerForm" class="form" action="submit_registration.php" method="POST" enctype="multipart/form-data">
             <h1 class="heading">Sign Up</h1>            
-            <select id="domain" name="domain" onchange="toggleUploadField()">
+            <select id="domain" name="domain">
                 <option>Choose Domain</option>
                 <option value="hawker">Hawker</option>
                 <option value="user">User</option>
             </select>
-            <!--<input type="text" id="domain" name="domain" placeholder="User/Hawker" required>-->
             
             <input type="email" id="email" name="email" placeholder="Enter Email" required>
             
@@ -35,6 +33,7 @@
         </form>
     </div>
 
-
+    <!-- Link to the JavaScript file here -->
+    <script src="register.js"></script>
 </body>
 </html>
