@@ -35,12 +35,69 @@ function toggleEditMode(enable) {
     priceField.disabled = !enable;
     uploadIconWrapper.style.display = enable ? 'block' : 'none';
     editButton.textContent = enable ? 'Save' : 'Edit';
+
+    // Disable/enable the add item button
+    if (enable) {
+        addItemButton.classList.add('disabled'); // Add disabled class
+    } else {
+        addItemButton.classList.remove('disabled'); // Remove disabled class
+    }
+
+    // Disable/enable other menu items
+    const menuItems = document.querySelectorAll('.menu-item:not(.add-item)');
+    menuItems.forEach(item => {
+        if (enable) {
+            item.classList.add('disabled'); // Add class to visually indicate disabled
+            item.style.pointerEvents = 'none'; // Prevent click events
+        } else {
+            item.classList.remove('disabled'); // Remove class when not editing
+            item.style.pointerEvents = 'auto'; // Enable click events
+        }
+    });
 }
+
+// Edit button functionality
+editButton.addEventListener('click', () => {
+    if (isEditing) {
+        // Save the current item (implement your save logic here)
+        if (selectedMenuItem) {
+            const nameInput = nameField.value.trim();
+            const itemName = nameInput || "New"; // Default to "New" if input is empty
+            
+            // Update the button text and data attributes for the selected item
+            selectedMenuItem.textContent = itemName;
+            selectedMenuItem.setAttribute('data-name', itemName);
+            selectedMenuItem.setAttribute('data-description', descriptionField.value);
+            selectedMenuItem.setAttribute('data-price', priceField.value);
+        }
+
+        const menuData = gatherMenuData();
+        // Send data to PHP via AJAX
+        fetch('updatemenuitems.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ menuItems: menuData })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Menu updated successfully!");
+                location.reload();
+            } else {
+                alert("Failed to update menu.");
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    toggleEditMode(!isEditing); // Toggle editing mode on button click
+});
 
 // Event listener for clicking menu items
 menuSidebar.addEventListener('click', (event) => {
     const menuItem = event.target.closest('.menu-item');
-    if (menuItem && !menuItem.classList.contains('add-item')) {
+    if (menuItem && !menuItem.classList.contains('add-item') && !menuItem.classList.contains('disabled')) {
         document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('selected'));
 
         selectedMenuItem = menuItem;
@@ -74,6 +131,10 @@ function deleteMenuItem(menuItem) {
 
 // Add new menu item button functionality
 addItemButton.addEventListener('click', () => {
+    if (isEditing) {
+        return; // Exit the function if in editing mode
+    }
+
     const newMenuItemButton = document.createElement('div'); // Create new item button
     newMenuItemButton.classList.add('menu-item');
     newMenuItemButton.textContent = "New"; // Default text for new items
@@ -87,16 +148,10 @@ addItemButton.addEventListener('click', () => {
 
     newMenuItemButton.appendChild(deleteButton); // Append the delete button
 
-    // Get the current index of menu items
-    const itemIndex = document.querySelectorAll('.menu-item').length; // Total number of items
-
-    // Create inputs for the new menu item's details
-    newMenuItemButton.innerHTML += `
-        <input type="text" name="menu_items[${itemIndex}][item_name]" placeholder="Enter Name" required />
-        <textarea name="menu_items[${itemIndex}][item_description]" placeholder="Enter Description"></textarea>
-        <input type="number" name="menu_items[${itemIndex}][item_price]" placeholder="Enter Price" required />
-        <input type="file" name="image[]" accept="image/*" />
-    `;
+    newMenuItemButton.setAttribute('data-name', "New");
+    newMenuItemButton.setAttribute('data-description', "");
+    newMenuItemButton.setAttribute('data-price', "");
+    newMenuItemButton.setAttribute('data-image', ""); // No image initially
 
     document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('selected'));
 
@@ -112,6 +167,9 @@ addItemButton.addEventListener('click', () => {
         ItemImage: ""
     });
 
+    // Immediately trigger click on the new menu item to display its details
+    newMenuItemButton.click();
+
     // Enable edit mode immediately
     toggleEditMode(true);
 
@@ -120,9 +178,6 @@ addItemButton.addEventListener('click', () => {
         event.stopPropagation(); // Prevent event bubbling
         deleteMenuItem(newMenuItemButton); // Call delete function
     });
-
-    // Programmatically trigger a click to show the new item details
-    newMenuItemButton.click();
 });
 
 // Update only the selected item's button text as user types
@@ -131,26 +186,8 @@ nameField.addEventListener('input', () => {
         const nameInput = nameField.value.trim();
         const itemName = nameInput || "New"; // Default to "New" if input is empty
         
-        // Update the button text
+        // Update the button text and data attributes for the selected item
         selectedMenuItem.textContent = itemName;
-
-        // Recreate the delete button to ensure it remains on the right
-        const deleteButton = document.createElement('span');
-        deleteButton.classList.add('cross'); // Add class for styling
-        deleteButton.textContent = '✖'; // Use a cross icon
-        deleteButton.style.color = 'red'; // Color for the delete button
-        deleteButton.style.cursor = 'pointer'; // Change cursor to pointer
-
-        // Append the delete button to the menu item and add delete functionality
-        selectedMenuItem.appendChild(deleteButton);
-
-        // Add event listener for the delete button
-        deleteButton.addEventListener('click', function(event) {
-            event.stopPropagation(); // Prevent event bubbling
-            deleteMenuItem(selectedMenuItem); // Call delete function
-        });
-
-        // Update data attributes for the selected item
         selectedMenuItem.setAttribute('data-name', itemName);
     }
 });
@@ -183,124 +220,21 @@ imageUploadInput.addEventListener('change', (event) => {
     }
 });
 
-// Save menu functionality
-function saveMenu() {
-    const itemName = nameField.value; // Get the current item's name
-    const itemDescription = descriptionField.value; // Get the current item's description
-    const itemPrice = priceField.value; // Get the current item's price
-
-    // Create a menu item object
-    const menuItem = {
-        item_name: itemName,
-        item_description: itemDescription,
-        item_price: itemPrice,
-    };
-
-    // Create a FormData object
-    const formData = new FormData();
-
-    // Append the menu item as a JSON string to the FormData object
-    formData.append('menu_item', JSON.stringify(menuItem)); // Use 'menu_item' instead of 'menu_items'
-
-    // Handle image upload for the item
-    const imageFiles = imageUpload.files; // Get the selected file
-    if (imageFiles.length > 0) {
-        formData.append('image', imageFiles[0]); // Append the first selected file
-    }
-
-    // Send the form data using AJAX
-    fetch(window.location.href, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.text()) // Get the response as text first
-    .then(text => {
-        console.log('Response:', text); // Log the response for debugging
-        const data = JSON.parse(text); // Parse it as JSON
-        return data;
-    })
-    .then(data => {
-        if (data.status === 'success') {
-            alert('Menu item saved successfully!');
-        } else {
-            alert('Error: ' + data.message);
+function gatherMenuData() {
+    const menuData = [];
+    document.querySelectorAll('.menu-item').forEach(item => {
+        if (!item.classList.contains('add-item')) {
+            menuData.push({
+                MenuItemID: item.getAttribute('data-id'),
+                ItemName: item.getAttribute('data-name'),
+                ItemDescription: item.getAttribute('data-description'),
+                Price: item.getAttribute('data-price'),
+                ItemImage: item.getAttribute('data-image').split('/').pop() // Only the file name
+            });
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while saving the menu item.');
     });
+    return menuData;
 }
-    /*const menuItems = []; // Initialize an array to hold menu items
-    const itemId = editButton.getAttribute('data-id');
-
-    // Assuming these fields exist for the current item being saved
-    const itemName = nameField.value;
-    const itemDescription = descriptionField.value;
-    const itemPrice = priceField.value;
-
-    // Create a menu item object and push it into the array
-    menuItems.push({
-        item_name: itemName,
-        item_description: itemDescription,
-        item_price: itemPrice,
-    });
-
-    // Create a FormData object
-    const formData = new FormData();
-
-    // Append the array of menu items as a JSON string to the FormData object
-    formData.append('menu_items', JSON.stringify(menuItems)); // Convert to JSON string
-
-    // Handle image upload for each item
-    const imageFiles = imageUpload.files; // Get all selected files
-    for (let i = 0; i < imageFiles.length; i++) {
-        formData.append('image[]', imageFiles[i]); // Append each file as an array
-    }
-
-    // Send the form data using AJAX
-    fetch(window.location.href, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.text()) // Get the response as text first
-    .then(text => {
-        console.log('Response:', text); // Log the response for debugging
-        const data = JSON.parse(text); // Parse it as JSON
-        return data;
-    })
-    .then(data => {
-        if (data.status === 'success') {
-            alert('Menu item saved successfully!');
-        } else {
-            alert('Error: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while saving the menu item.');
-    });
-}*/
-
-// Event listener for the edit button to include save functionality
-editButton.addEventListener('click', () => {
-    if (isEditing) {
-        saveMenu(); // Call save menu function on save
-    } else {
-        // Existing edit functionality
-        if (selectedMenuItem) {
-            const nameInput = nameField.value.trim();
-            const itemName = nameInput || "New"; // Default to "New" if input is empty
-            
-            // Update the button text and data attributes for the selected item
-            selectedMenuItem.textContent = itemName;
-            selectedMenuItem.setAttribute('data-name', itemName);
-            selectedMenuItem.setAttribute('data-description', descriptionField.value);
-            selectedMenuItem.setAttribute('data-price', priceField.value);
-        }
-    }
-    toggleEditMode(!isEditing); // Toggle editing mode on button click
-});
 
 // Initial display
 if (selectedMenuItem) {
