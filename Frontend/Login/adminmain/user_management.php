@@ -102,7 +102,7 @@ if ($stmt === false) {
                     echo "<button onclick='suspendUser({$row['user_id']})'>Suspend</button>";
                 }
                 if ($row['status'] === 'suspended') {
-                    echo "<button onclick='activateUser({$row['user_id']})'>Suspend</button>";
+                    echo "<button onclick='activateUser({$row['user_id']})'>Activate</button>";
                 }
                 if ($row['domain'] === 'hawker' && $row['status'] === 'pending') {
                     echo "<button onclick='approveHawker({$row['user_id']})'>Approve</button>";
