@@ -47,10 +47,9 @@ $defaultItem = count($menuItems) > 0 ? $menuItems[0] : null;
 $imageName = $defaultItem ? htmlspecialchars($defaultItem['ItemImage']) : '';
 
 // Build potential image path for absolute URL
-$imagePath = !empty($imageName) ? 'http://localhost/Frontend/Login/hawkerinitialize/uploads/' . $imageName : '';
+$imagePath = !empty($imageName) ? 'http://localhost/SC2006_Project_Assignment/Frontend/Login/hawkerinitialize/uploads/' . $imageName : '';
 //ob_end_flush();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,10 +68,8 @@ $imagePath = !empty($imageName) ? 'http://localhost/Frontend/Login/hawkerinitial
                      data-name="<?php echo htmlspecialchars($item['ItemName']); ?>"
                      data-description="<?php echo htmlspecialchars($item['ItemDescription']); ?>"
                      data-price="<?php echo htmlspecialchars($item['Price']); ?>"
-                     data-image="http://localhost/Frontend/Login/hawkerinitialize/uploads/<?php echo htmlspecialchars($item['ItemImage']); ?>">
+                     data-image="http://localhost/SC2006_Project_Assignment/Frontend/Login/hawkerinitialize/uploads/<?php echo htmlspecialchars($item['ItemImage']); ?>">
                     <?php echo htmlspecialchars($item['ItemName']); ?>
-                    <button class="delete-button" data-id="<?php echo htmlspecialchars($item['MenuItemID']); ?>" style="display:none;">Delete</button>
-                    <span class="cross" data-id="<?php echo htmlspecialchars($item['MenuItemID']); ?>">✖</span>
                 </div>
             <?php endforeach; ?>
             <div class="menu-item add-item" id="addItem">+</div>
@@ -110,6 +107,7 @@ $imagePath = !empty($imageName) ? 'http://localhost/Frontend/Login/hawkerinitial
                     </div>
                 </div>
                 <button class="edit-button" id="editButton">Edit</button>
+                <button class="delete-button" id="deleteButton" style="display: none; color: red;">Delete</button>
             </div>
         </div>
     </div>
