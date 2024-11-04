@@ -1,6 +1,6 @@
 // Initialize and add the map
 function initMap() {
-    // Center the map at a default location (e.g., Singapore)
+    // Center the map at a default location (Singapore)
     var mapCenter = { lat: 1.3521, lng: 103.8198 };
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -8,6 +8,44 @@ function initMap() {
         center: mapCenter
     });
 
+
+    // Check if Geolocation API is supported
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+
+                let   curInfoWindow = new google.maps.InfoWindow();
+                // Place a marker on the user's location
+                new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    title: "You are here!",
+                });
+                curInfoWindow.setPosition(pos);
+                curInfoWindow.setContent("Location found.");
+                curInfoWindow.open(map);
+                map.setCenter(pos);
+                /*
+                // Center map on user's location
+                map.setCenter(pos);
+                map.setZoom(15);
+                */
+            },
+            () => {
+                // Handle error (e.g., user denied access)
+                handleLocationError(true, map.getCenter());
+            }
+        );
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, map.getCenter());
+    }
+
+    
     // Fetch locations from the PHP script
     fetch('get_hawker_addresses.php')
         .then(response => response.json())
@@ -48,6 +86,17 @@ function initMap() {
             });
         })
         .catch(error => console.error('Error:', error)); 
+}
+
+
+function handleLocationError(browserHasGeolocation, pos) {
+    const infoWindow = new google.maps.InfoWindow({
+        content: browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation.",
+        position: pos,
+    });
+    infoWindow.open(map);
 }
 
 
