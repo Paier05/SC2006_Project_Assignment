@@ -8,6 +8,14 @@ function initMap() {
         center: mapCenter
     });
 
+    const customIcon = {
+        path: google.maps.SymbolPath.CIRCLE,  // Use a predefined shape, or specify a custom SVG path
+        fillColor: "#03adfc",                 // Marker color (hex or RGB)
+        fillOpacity: 1,
+        strokeColor: "#ADD8E6",               // Outline color
+        strokeWeight: 2,
+        scale: 8,                            // Size of the marker
+    };
 
     // Check if Geolocation API is supported
     if (navigator.geolocation) {
@@ -20,20 +28,18 @@ function initMap() {
 
                 let   curInfoWindow = new google.maps.InfoWindow();
                 // Place a marker on the user's location
-                new google.maps.Marker({
+                let curMarker = new google.maps.Marker({
                     position: pos,
                     map: map,
+                    icon: customIcon,
                     title: "You are here!",
                 });
                 curInfoWindow.setPosition(pos);
-                curInfoWindow.setContent("Location found.");
-                curInfoWindow.open(map);
+                curInfoWindow.setContent("You are here.");
+                curInfoWindow.open(map, curMarker);
                 map.setCenter(pos);
-                /*
                 // Center map on user's location
-                map.setCenter(pos);
-                map.setZoom(15);
-                */
+                map.setZoom(12);
             },
             () => {
                 // Handle error (e.g., user denied access)
