@@ -187,3 +187,14 @@ textarea {
 .menu-item.add-item:hover { 
     background-color: #F59500; 
 }
+
+.menu-item.disabled {
+    opacity: 0.5; /* Dimmed appearance */
+    cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
+
+.disabled {
+    opacity: 0.5; /* Dim the button */
+    pointer-events: none; /* Prevent click events */
+    cursor: not-allowed; /* Change cursor to indicate it's disabled */
+}
