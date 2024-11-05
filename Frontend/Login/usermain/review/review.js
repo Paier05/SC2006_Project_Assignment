@@ -33,7 +33,6 @@ function loadStallReview() {
     fetch(`fetch_review.php?stall_id=${stallId}`)
         .then(response => response.json())
         .then(reviews => {
-            // Set stall information
             console.log(reviews);
             let reviewHTML = ``;
 
@@ -43,7 +42,6 @@ function loadStallReview() {
             }
 
             reviews.forEach(review => {
-                console.log(review);
                 reviewHTML += `
                     <div class="review-card">
                         <p>${review.user_email}</p>
@@ -52,7 +50,7 @@ function loadStallReview() {
                     </div>
                 `;
             });
-            document.getElementById("reviewList").innerHTML = reviewHTML;
+            document.getElementById("reviewList").innerHTML = reviewHTML; // Ensure this matches the HTML ID
         })
         .catch(error => console.error("Error:", error));
 }
