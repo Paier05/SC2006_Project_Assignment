@@ -12,7 +12,7 @@ if (!isset($_FILES['image'])) {
 }
 
 // Use absolute path for the uploads directory
-$uploadsDir = $_SERVER['DOCUMENT_ROOT'] . '/SC2006_Project_Assignment/Frontend/Login/hawkerinitialize/uploads/';
+$uploadsDir = '../../hawkerinitialize/uploads/';
 $imageFile = $_FILES['image'];
 $imageName = basename($imageFile['name']);
 $targetFilePath = $uploadsDir . $imageName;

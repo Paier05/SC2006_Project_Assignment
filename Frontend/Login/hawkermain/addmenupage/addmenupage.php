@@ -47,7 +47,7 @@ $defaultItem = count($menuItems) > 0 ? $menuItems[0] : null;
 $imageName = $defaultItem ? htmlspecialchars($defaultItem['ItemImage']) : '';
 
 // Build potential image path for absolute URL
-$imagePath = !empty($imageName) ? 'http://localhost/SC2006_Project_Assignment/Frontend/Login/hawkerinitialize/uploads/' . $imageName : '';
+$imagePath = !empty($imageName) ? '../../hawkerinitialize/uploads/' . $imageName : '';
 //ob_end_flush();
 ?>
 <!DOCTYPE html>
@@ -68,8 +68,8 @@ $imagePath = !empty($imageName) ? 'http://localhost/SC2006_Project_Assignment/Fr
                      data-name="<?php echo htmlspecialchars($item['ItemName']); ?>"
                      data-description="<?php echo htmlspecialchars($item['ItemDescription']); ?>"
                      data-price="<?php echo htmlspecialchars($item['Price']); ?>"
-                     data-image="http://localhost/SC2006_Project_Assignment/Frontend/Login/hawkerinitialize/uploads/<?php echo htmlspecialchars($item['ItemImage']); ?>">
-                    <?php echo htmlspecialchars($item['ItemName']); ?>
+                     data-image="../../hawkerinitialize/uploads/<?php echo htmlspecialchars($item['ItemImage']); ?>">
+                     <?php echo htmlspecialchars($item['ItemName']); ?>
                 </div>
             <?php endforeach; ?>
             <div class="menu-item add-item" id="addItem">+</div>

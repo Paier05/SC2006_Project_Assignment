@@ -19,7 +19,7 @@ function displayMenuDetails(item) {
     priceField.value = item.Price;
 
     if (item.ItemImage) {
-        foodImage.src = `http://localhost/SC2006_Project_Assignment/Frontend/Login/hawkerinitialize/uploads/${item.ItemImage}`;
+        foodImage.src = `../../hawkerinitialize/uploads/${item.ItemImage}`;
         foodImage.style.display = 'block';
     } else {
         foodImage.style.display = 'none'; // Hide image for new items without an uploaded image
