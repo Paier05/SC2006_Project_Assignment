@@ -2,6 +2,7 @@
 <p>Welcome to the official repository of <b>Hawker Stalk</b> !<br>
 Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
 By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. </p>
+
 ---
 
 # Project Setup Instructions
@@ -135,3 +136,13 @@ The Strategy Pattern is applied in the Controller layer to manage varying behavi
  - https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js
 
 # Contributors
+The following are the contributors of this project: 
+|Name |Github Username|Role|
+|---|----|----|
+|Tan Ming Hao| @Paier05 | Full Stack |
+|Choo Zhen Ming| @M450NCH00 | Full Stack |
+|Cho Zhi Wei| @ChoWei0310 | Full Stack |
+|Chow Weng Shi| @wengshi10 | Full Stack |
+|Lai Xin Yee| @CLXYee | Full Stack |
+|Swaminathan Navitraa| @Navitraa | Frontend |
+|Pham Nguyen Vu Hoan| @pnvhoang | Documentation |
