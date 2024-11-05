@@ -34,12 +34,20 @@ if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
+$hasFaultReports = false;
+
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     $fault_report_text = htmlspecialchars($row['fault_report'], ENT_QUOTES, 'UTF-8');
+    $hasFaultReports = true;
     echo '<div class="report-item">';
     echo '<p>' . $fault_report_text . '</p>';
     echo '<button class="delete-btn" onclick="deleteReport(`' . addslashes($fault_report_text) . '`)">Solved</button>';
     echo '</div>';
+}
+
+if (!$hasFaultReports) {
+    // If no fault reports found, display the message
+    echo '<p>Your stall does not have any fault reports at the moment.</p>';
 }
 
 sqlsrv_free_stmt($stmt);
