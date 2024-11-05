@@ -1,22 +1,18 @@
 # Hawker Stalk 
-Welcome to the official repository of <b>Hawker Stalk</b> !
-
+Welcome to the official repository of <b>Hawker Stalk</b> !<br>
+Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
+By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. 
+---
 
 # Project Setup Instructions
-
 ### Code Requirements
-
 Our website primarily uses the following technologies:
-
 1. **HTML** - for the content and structure of the webpage.
 2. **CSS** - for styling and layout design.
 3. **JavaScript** - for the logic and interactivity on the website.
 4. **PHP** - for connecting and communicating with the database (requires additional setup).
-
 You can use [Visual Studio Code](https://code.visualstudio.com/) to write all of these code files.
-
 ---
-
 ### Run Environment Setup
 
 To run the website locally, you'll need to install a few tools and extensions.
@@ -64,9 +60,66 @@ Since we use Azure SQL Server as our database, we need to add extensions that al
    - Check for “sqlsrv” and “pdo_sqlsrv” to confirm that the extensions loaded successfully.
 
 ---
-
 With these installations complete, your local environment should be set up to run the website and connect to the Azure SQL Server.
+---
 
+# Pre-configured Users
+|Domain |Email |Password|
+|-----|-----|-----|
+|Admin|NA|NA|
+|Customer|ccc@ddd.com|NA|
+|Customer|NA|NA|
+|Hawker|hawker123@test.com|Hawker123#|
+|Hawker|hawker666@test.com|Hawker666#|
+---
+# Documentation
+## API Docs
+# App Design
+## Overview
+## File Structure
+
+# Design Pattern
+
+## MVC Pattern
+
+The HawkerStall application follows the MVC (Model-View-Controller) design pattern to separate business logic, user interface, and control functions.
+
+### Model
+The Model layer contains the core logic and data management for the application, specifically for handling HawkerStall-related functionality, including:
+- **Account verification**: Authenticating user accounts and stall owners.
+- **Review and fault report storage**: Managing and storing user reviews, ratings, and fault reports.
+- **Stall data management**: Handling data related to stall details, including menu items, operating hours, and location.
+
+### View
+The View layer is responsible for presenting data in a user-friendly manner, ensuring users have a clear interface to interact with:
+- **Displaying interfaces**: Showing various pages and elements of the user interface.
+- **Dynamic data display**: Presenting real-time information like reviews, ratings, and operating hours, providing users with up-to-date stall information.
+
+### Controller
+The Controller layer acts as the intermediary between the Model and the View, managing user inputs and ensuring data integrity:
+- **Form processing**: Handling data submissions from the user.
+- **Data validation**: Ensuring the data provided by the user is valid and follows the correct format.
+- **User action responses**: Interpreting user actions and sending updates to the Model or View as needed.
+
+---
+
+## Observer & Strategy Patterns in MVC
+
+To improve flexibility and maintainability, we use the Observer and Strategy design patterns within the MVC framework.
+
+### Observer Pattern
+The Observer Pattern is implemented between the Model and View layers. It allows automatic updates in the View whenever the Model undergoes changes. This pattern is used for real-time data updates, such as:
+- **Real-time operating status updates**: Instantly reflecting any changes in stall availability.
+- **Real-time reviews and ratings**: Automatically updating displayed reviews and average ratings when new ones are added.
+- **Menu and operating hour updates**: Immediately showing changes when stall owners update their offerings or hours.
+
+### Strategy Pattern
+The Strategy Pattern is applied in the Controller layer to manage varying behaviors without hardcoding solutions. It enables flexible implementation of different business logic and functionality, such as:
+- **Search and filter options**: Allowing multiple filtering strategies based on user preferences.
+- **Sorting and ranking**: Implementing customizable ranking and sorting for search results.
+- **Rating calculation**: Adapting various calculation methods for different rating categories.
+  
+---
 
 # Tech Stack
 ### Frontend: 
