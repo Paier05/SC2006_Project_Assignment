@@ -1,7 +1,7 @@
 # Hawker Stalk 
-Welcome to the official repository of <b>Hawker Stalk</b> !<br>
+<p>Welcome to the official repository of <b>Hawker Stalk</b> !<br>
 Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
-By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. 
+By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. </p>
 ---
 
 # Project Setup Instructions
