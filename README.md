@@ -1,6 +1,9 @@
 # Hawker Stalk 
-<p>Welcome to the official repository of <b>Hawker Stalk</b> !<br>
+<p>Welcome to the official repository of <b>Hawker Stalk</b> !<br> 🍛🍜🥗
 Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
+
+  ![alt text](https://github.com/Paier05/SC2006_Project_Assignment/HawkerStalkLogo.png)
+  
 By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. </p>
 
 ---
@@ -77,6 +80,8 @@ Since we use Azure SQL Server as our database, we need to add extensions that al
 ## Overview
 ## File Structure
 
+---
+
 # Design Pattern
 
 ## MVC Pattern
@@ -99,8 +104,6 @@ The Controller layer acts as the intermediary between the Model and the View, ma
 - **Form processing**: Handling data submissions from the user.
 - **Data validation**: Ensuring the data provided by the user is valid and follows the correct format.
 - **User action responses**: Interpreting user actions and sending updates to the Model or View as needed.
-
----
 
 ## Observer & Strategy Patterns in MVC
 
@@ -129,11 +132,15 @@ The Strategy Pattern is applied in the Controller layer to manage varying behavi
 - PHP
 - Microsoft Azure SQL Database
 
+---
+
 # External APIs
 1. <b>Google Map API</b>
  - https://maps.googleapis.com/maps/api/js?key=AIzaSyCzh4khfKnyc3v9JIN4LhAR0ZxCw8Xsa_s
 2. <b>Email API</b>
  - https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js
+
+---
 
 # Contributors
 The following are the contributors of this project: 
