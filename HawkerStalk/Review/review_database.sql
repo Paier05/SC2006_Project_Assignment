@@ -1,0 +1,9 @@
+CREATE TABLE reviews (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    stall_name VARCHAR(255) NOT NULL,
+    rating INT(1) NOT NULL,
+    review TEXT NOT NULL,
+    crowd_level INT(1) NOT NULL,
+    time VARCHAR(5) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

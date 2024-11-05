@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening Hours</title>
+    <link rel="stylesheet" href="hawkeropeninghours.css">
+</head>
+<body>
+    <div class="header">
+        <h1><span id="stall_name" class="stall_name"></span></h1>
+        <a href="../hawkermain.html" class="close-btn">X</a>
+    </div>
+    <div class="container">
+        <h2 class="main_headings">Original Opening Hours</h2>
+        <div class="opening-data">
+            <p class="main_headings"><span>Opening Hours: </span><span id="original_opening_hours"></span></p><br>
+            <p class="main_headings"><span>Opening Days:  </span><span id="original_opening_days">Shown in Green</span></p><br><br>
+            <p class="main_headings">Click on the days icon to select/deselect opening days</p>
+        </div>
+
+        <h2 class="main_headings">Update Opening Hours</h2>
+        <div class="days">
+            <span class="day-btn" data-day="0">Mon</span>
+            <span class="day-btn" data-day="1">Tue</span>
+            <span class="day-btn" data-day="2">Wed</span>
+            <span class="day-btn" data-day="3">Thu</span>
+            <span class="day-btn" data-day="4">Fri</span>
+            <span class="day-btn" data-day="5">Sat</span>
+            <span class="day-btn" data-day="6">Sun</span>
+        </div>
+
+        <div class="time-selector">
+            <input type="text" id="opening_hours" placeholder="e.g. 09:00am-09:00pm" required>
+        </div>
+
+        <button id="saveBtn" class="save-btn">Save</button>
+    </div>
+
+    <script src="hawkeropeninghours.js"></script>
+</body>
+</html>
