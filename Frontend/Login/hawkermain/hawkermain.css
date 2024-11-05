@@ -84,8 +84,21 @@ h1 {
     gap: 50px;
 }
 
-.btn, .btn-large,.btn-open, .btn-close, .btn-shut {
+.btn, .btn-large {
     background-color: #ffcd43;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-shut {
+    background-color: #f93d3d;
     border: none;
     border-radius: 25px;
     padding: 10px 20px;
@@ -109,24 +122,6 @@ h1 {
     background-color: #f2b93a;
 }
 
-.btn-open {
-    font-size: 13px;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    padding: 15px 30px;
-    width: 180px;
-}
-
-.btn-close {
-    font-size: 13px;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    padding: 15px 30px;
-    width: 180px;
-}
-
 .btn-shut {
     font-size: 12px;
     position: relative;
@@ -136,8 +131,8 @@ h1 {
     width: 180px;
 }
 
-.btn-open:hover, .btn-close:hover, .btn-shut:hover {
-    background-color: #f2b93a;
+.btn-shut:hover {
+    background-color: #be2a2a;
 }
 
 .stall-name {
