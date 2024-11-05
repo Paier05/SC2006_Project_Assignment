@@ -2,7 +2,7 @@
 <p>Welcome to the official repository of <b>Hawker Stalk</b> !🍛🍜🥗 <br> 
 Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
 
-  ![Alt text](https://github.com/Paier05/SC2006_Project_Assignment/blob/main/HawkerStalkLogo.png)
+<img align=“center” width="100" height="100" src="https://github.com/Paier05/SC2006_Project_Assignment/blob/main/HawkerStalkLogo.png"></img>
   
 By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. </p>
 
@@ -11,10 +11,10 @@ By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a 
 # Project Setup Instructions
 ### Code Requirements
 Our website primarily uses the following technologies:
-1. **HTML** - for the content and structure of the webpage.
-2. **CSS** - for styling and layout design.
-3. **JavaScript** - for the logic and interactivity on the website.
-4. **PHP** - for connecting and communicating with the database (requires additional setup).
+1. ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) - for the content and structure of the webpage.
+2. ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) - for styling and layout design.
+3. ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) - for the logic and interactivity on the website.
+4. ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white) - for connecting and communicating with the database (requires additional setup).
 You can use [Visual Studio Code](https://code.visualstudio.com/) to write all of these code files.
 ---
 ### Run Environment Setup
@@ -68,22 +68,40 @@ Since we use Azure SQL Server as our database, we need to add extensions that al
 # Pre-configured Users
 |Domain |Email |Password|
 |-----|-----|-----|
-|Admin|NA|NA|
-|Customer|ccc@ddd.com|NA|
-|Customer|NA|NA|
+|Admin|admin123@test.com|Admin123#|
+|Customer|ccc@ddd.com|111111aA|
+|Customer|halo@gmail.com|111111aA|
 |Hawker|hawker123@test.com|Hawker123#|
 |Hawker|hawker666@test.com|Hawker666#|
 ---
-# Documentation
-## API Docs
-# App Design
-## Overview
-## File Structure
-
+# Features
+##### Authentication
+- Sign up
+- Verification email will be sent to inbox upon sign up
+- Login
+##### Admin
+- Approve or reject hawker sign up request
+- Suspend accounts
+- View account details
+##### Hawker
+- Initialise profile during sign up
+- Update menu
+- Update opening hours and opening days
+- View their stall reviews
+- View fault reports
+- Delete account and close stall permanently
+##### Customer
+- View Singapore's map with hawker centres' location
+- Search for hawker centre
+- View stalls in a hawker centre
+- View menu of hawker stalls
+- View opening hours and days of hawker stall
+- View ratings and reviews of hwaker stall
+- Submit stall review
+- Submit fault report of hawker stall
 ---
 
 # Design Pattern
-
 ## MVC Pattern
 
 The HawkerStall application follows the MVC (Model-View-Controller) design pattern to separate business logic, user interface, and control functions.
@@ -144,12 +162,12 @@ The Strategy Pattern is applied in the Controller layer to manage varying behavi
 
 # Contributors
 The following are the contributors of this project: 
-|Name |Github Username|Role|
-|---|----|----|
-|Tan Ming Hao| @Paier05 | Full Stack |
-|Choo Zhen Ming| @M450NCH00 | Full Stack |
-|Cho Zhi Wei| @ChoWei0310 | Full Stack |
-|Chow Weng Shi| @wengshi10 | Full Stack |
-|Lai Xin Yee| @CLXYee | Full Stack |
-|Swaminathan Navitraa| @Navitraa | Frontend |
-|Pham Nguyen Vu Hoan| @pnvhoang | Documentation |
+|Name |Github Username|
+|---|----|
+|Tan Ming Hao| @Paier05 | 
+|Choo Zhen Ming| @M450NCH00 | 
+|Cho Zhi Wei| @ChoWei0310 | 
+|Chow Weng Shi| @wengshi10 | 
+|Lai Xin Yee| @CLXYee | 
+|Swaminathan Navitraa| @Navitraa |
+|Pham Nguyen Vu Hoan| @pnvhoang |
