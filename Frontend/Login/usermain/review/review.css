@@ -6,7 +6,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
 .container {
@@ -49,19 +48,21 @@ h1 {
   color: #ff9c1a;
 }
 
-.review-list {
-  margin: 20px 0;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  text-align: left;
+.reviews-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
 }
 
 .review-card {
-  background-color: #fff;
+  background-color: white;
   padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  flex: 1 1 200px; 
+  max-width: 180px; 
+  box-sizing: border-box;
 }
 
 textarea {
