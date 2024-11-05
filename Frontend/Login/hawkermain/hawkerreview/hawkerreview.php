@@ -37,13 +37,21 @@ if ($stmt === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
+$hasRatings = false;
+
 // Output the ratings and reviews as HTML
 while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    $hasRatings = true;
     echo '<div class="review-item">';
     echo '<h3>Rating: <span class="rating">' . htmlspecialchars($row['rating']) . ' / 5</span></h3>';
     echo '<p>' . htmlspecialchars($row['review']) . '</p>';
     echo '<p><strong>Reviewed by Customer ID: ' . htmlspecialchars($row['user_email']) . '</strong></p>';
     echo '</div>';
+}
+
+if (!$hasRatings) {
+    // If no fault reports found, display the message
+    echo '<p class="centered-message">Your stall does not have any ratings or reviews yet!</p>';
 }
 
 // Free statement and close connection
