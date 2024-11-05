@@ -78,7 +78,7 @@ $imagePath = !empty($imageName) ? '../../hawkerinitialize/uploads/' . $imageName
         <!-- Content Display for Selected Menu Item -->
         <div class="content">
             <div class="header">
-                <h1>Western Stall</h1>
+                <h1><span id="stall_name" class="stall_name"></span></h1>
                 <a href="../hawkermain.html"><button class="close-button">X</button></a>
             </div>
 
@@ -107,7 +107,7 @@ $imagePath = !empty($imageName) ? '../../hawkerinitialize/uploads/' . $imageName
                     </div>
                 </div>
                 <button class="edit-button" id="editButton">Edit</button>
-                <button class="delete-button" id="deleteButton" style="display: none; color: red;">Delete</button>
+                <button class="delete-button" id="deleteButton" style="display: none; color: white;">Delete</button>
             </div>
         </div>
     </div>
