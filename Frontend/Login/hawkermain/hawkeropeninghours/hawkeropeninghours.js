@@ -59,6 +59,11 @@ document.getElementById('saveBtn').addEventListener('click', function() {
         return;
     }
 
+    if (!opening_hours) {
+        alert('Please fill in the opening hours!');
+        return;
+    }
+
     // Make an AJAX POST request
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'hawkeropeninghours.php', true);
@@ -66,6 +71,7 @@ document.getElementById('saveBtn').addEventListener('click', function() {
     xhr.onload = function() {
         if (xhr.status === 200) {
             alert('Opening hours saved successfully.');
+            location.reload();
         } else {
             alert('Error saving opening hours.');
         }
