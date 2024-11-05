@@ -68,7 +68,7 @@ Since we use Azure SQL Server as our database, we need to add extensions that al
 With these installations complete, your local environment should be set up to run the website and connect to the Azure SQL Server.
 
 
-## Tech Stack
+# Tech Stack
 Frontend: 
 - HTML
 - CSS
@@ -77,10 +77,10 @@ Backend：
 - PHP
 - Microsoft Azure SQL Database
 
-## External APIs
+# External APIs
 1. <b>Google Map API</b>
 - - https://maps.googleapis.com/maps/api/js?key=AIzaSyCzh4khfKnyc3v9JIN4LhAR0ZxCw8Xsa_s
 2. <b>Email API</b>
 - - https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js
 
-## Contributors
+# Contributors
