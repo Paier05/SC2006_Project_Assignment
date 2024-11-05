@@ -1,8 +1,8 @@
 # Hawker Stalk 
-<p>Welcome to the official repository of <b>Hawker Stalk</b> !<br> 🍛🍜🥗
+<p>Welcome to the official repository of <b>Hawker Stalk</b> !🍛🍜🥗 <br> 
 Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
 
-  ![Alt text](https://github.com/Paier05/SC2006_Project_Assignment/HawkerStalkLogo.png)
+  ![Alt text](https://github.com/Paier05/SC2006_Project_Assignment/blob/main/HawkerStalkLogo.png)
   
 By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a more modern and interactive way, at the same time promoting the culture wider to tourists, providing them with a unique Singapore experience by making exploring different hawker centers in town fun and adventurous. </p>
 
@@ -125,12 +125,12 @@ The Strategy Pattern is applied in the Controller layer to manage varying behavi
 
 # Tech Stack
 ### Frontend: 
-- HTML ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-- CSS ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ### Backend： 
-- JavaScript ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-- PHP ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
-- Microsoft Azure SQL Database ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
 
 ---
 
