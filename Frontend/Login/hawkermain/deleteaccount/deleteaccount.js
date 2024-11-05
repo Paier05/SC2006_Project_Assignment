@@ -1,5 +1,5 @@
 function redirectToMainPage(){
-    window.location.href = 'http://localhost/SC2006_Project_Assignment/Frontend/Login/hawkermain/hawkermain.html';
+    window.location.href = '../hawkermain.html';
 }
 
 async function handleFormSubmit(event) {
