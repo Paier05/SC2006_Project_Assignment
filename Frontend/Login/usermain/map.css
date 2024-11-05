@@ -20,8 +20,12 @@
     overflow: hidden;
 }
 
-#sidebar h2 {
-    display: none; /* Hide extra heading in sidebar */
+#sidebar {
+    width: 300px;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 /* Search bar styling */
