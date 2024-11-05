@@ -60,8 +60,6 @@ Since we use Azure SQL Server as our database, we need to add extensions that al
    - Check for “sqlsrv” and “pdo_sqlsrv” to confirm that the extensions loaded successfully.
 
 ---
-With these installations complete, your local environment should be set up to run the website and connect to the Azure SQL Server.
----
 
 # Pre-configured Users
 |Domain |Email |Password|
