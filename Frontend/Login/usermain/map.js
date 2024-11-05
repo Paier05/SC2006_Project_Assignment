@@ -164,6 +164,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
                 document.getElementById('stallList').innerHTML = `<p>No stalls found for ${hawkerCenterName}</p>`;
                 // Clear previous menu (if any)
                 document.getElementById('menuItems').innerHTML = '';
+                document.getElementById("menuContainer").style.display = 'none';
                 return;
             }
 
@@ -186,6 +187,7 @@ function fetchStalls(hawkerCenterId, hawkerCenterName) {
             document.getElementById('stallList').innerHTML = stallList;
 
             // Clear previous menu (if any)
+            document.getElementById("menuContainer").style.display = 'none';
             document.getElementById('menuItems').innerHTML = '';
         })
         .catch(error => console.error('Error:', error));
