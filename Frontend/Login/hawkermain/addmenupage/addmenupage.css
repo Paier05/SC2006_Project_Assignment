@@ -184,6 +184,20 @@ textarea {
     background-color: #F59500;
 }
 
+.delete-button {
+    background-color: #f93d3d;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #be2a2a;
+}
+
 .menu-item.add-item:hover { 
     background-color: #F59500; 
 }
