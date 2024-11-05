@@ -69,18 +69,18 @@ With these installations complete, your local environment should be set up to ru
 
 
 # Tech Stack
-Frontend: 
+### Frontend: 
 - HTML
 - CSS
-Backend： 
+### Backend： 
 - JavaScript
 - PHP
 - Microsoft Azure SQL Database
 
 # External APIs
 1. <b>Google Map API</b>
-- - https://maps.googleapis.com/maps/api/js?key=AIzaSyCzh4khfKnyc3v9JIN4LhAR0ZxCw8Xsa_s
+ - https://maps.googleapis.com/maps/api/js?key=AIzaSyCzh4khfKnyc3v9JIN4LhAR0ZxCw8Xsa_s
 2. <b>Email API</b>
-- - https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js
+ - https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js
 
 # Contributors
