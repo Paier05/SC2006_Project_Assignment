@@ -1,6 +1,6 @@
 # Hawker Stalk 
 <p>Welcome to the official repository of <b>Hawker Stalk</b> !🍛🍜🥗 <br> 
-Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br><br>
+Hawker Stalk is a one-stop platform that connects tourists, residents and hawkers to preserve Singapore’s unique Hawker culture. It allows users to explore different hawker centers in Singapore and the food choices available in a more convinient way. <br>
 
 <img align=“center” width="100" height="100" src="https://github.com/Paier05/SC2006_Project_Assignment/blob/main/HawkerStalkLogo.png"></img>
   
@@ -68,7 +68,7 @@ Since we use Azure SQL Server as our database, we need to add extensions that al
 # Pre-configured Users
 |Domain |Email |Password|
 |-----|-----|-----|
-|Admin|admin123@test.com|Admin123#|
+|Admin|admin123@test.com|111111aA|
 |Customer|ccc@ddd.com|111111aA|
 |Customer|halo@gmail.com|111111aA|
 |Hawker|hawker123@test.com|Hawker123#|
