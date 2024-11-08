@@ -12,3 +12,5 @@ This is the file which contains the deliverables of Lab 3
 - System Architecture
 - Application Skeleton
 ```
+
+For all the pictures in our deliverables, please refer to the folder if the document's picture is unclear.
