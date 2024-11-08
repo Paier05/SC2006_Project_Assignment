@@ -8,6 +8,11 @@ By establishing Hawker Stalk, we hope to enhance Singpore's Hawker culture in a 
 
 ---
 
+# Demo Video
+[Demo Vidoe for Our Project](https://www.youtube.com/watch?v=9bZvxklh6G4)
+
+---
+
 # Project Setup Instructions
 ### Code Requirements
 Our website primarily uses the following technologies:
